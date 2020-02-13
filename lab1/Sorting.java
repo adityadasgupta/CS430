@@ -9,6 +9,8 @@ package Sort;
  */
 public class Sorting {
 	private int count;
+	boolean sorted = false;
+	boolean shuffled = true;
 	public Sorting() {
 		count = 0;
 	}
@@ -27,6 +29,8 @@ public class Sorting {
 			}
 		arr[i+1] = key;
 		}
+		shuffled = false;
+		sorted = true;
 		//return arr;
 	}
 	/*
@@ -132,7 +136,9 @@ public class Sorting {
 	        arr[k] = R[j]; 
 	        j++; 
 	        k++; 
-	    } 
+	    }
+	    shuffled = false;
+	    sorted = true;
 	  
 	} 
 	  
@@ -152,5 +158,25 @@ public class Sorting {
 	        count++;
 	        merge(arr, l, m, r); 
 	    } 
+	}
+	public void createList() {
+		list = new int[len];	//CREATES A LIST EQUAL TO THE LENGTH
+		for(int i = 0; i < len; i++) {	//FILLS THE LIST FROM 1-LEN
+			list[i] = i+1;
+		} 
+	}
+	
+	public void shuffleList() {
+		createList();
+		for(int a = 0; a < 500; a++) {	//SHUFFLE RUNS 500 TIMES
+			for(int i = 0; i < len; i++) {	//ACCESS EACH ELEMENT OF THE LIST
+				int rand = r.nextInt(len);	//PICK A RANDOM NUM FROM 0-LEN
+				int temp = list[i];			//SETS TEMP INT TO CURRENT ELEMENT
+				list[i] = list[rand];		//SWAPS THE CURRENT INDEX WITH RANDOM INDEX
+				list[rand] = temp;			//SETS THE RANDOM INDEX TO THE TEMP
+			}
+		}
+		sorted = false;
+		shuffled = true;
 	}
 }
