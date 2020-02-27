@@ -1,3 +1,6 @@
+#Team name: null
+#Team members: Aditya Dasgupta(seat 14) and Devyani Gauri(Seat 25)
+
 def maxSubArr(arr):
     largest = 0
     current = 0
