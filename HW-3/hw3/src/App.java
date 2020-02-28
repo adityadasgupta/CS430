@@ -527,6 +527,87 @@ class GraphCanvas1 extends JPanel {
 				}
 			}
 		}
+		public void heapSort() {
+			heapify(len);
+			int end = len-1;
+			while(end > 0 && sorting) {
+				current = end;
+				swap(end,0);
+				end--;
+				siftDown(0,end);
+				Update();
+				delay();
+			}
+		}
+		//heapify
+		public void heapify(int n) {
+			int start = iParent(n-1);
+			while(start >= 0 && sorting) {
+				siftDown(start, n-1);
+				start--;
+				Update();
+				delay();
+			}
+		}
+		//siftdown
+		public void siftDown(int start, int end) {
+			int root = start;
+			while(iLeftChild(root) <= end && sorting) {
+				int child = iLeftChild(root);
+				int swap = root;
+				check = root;
+				if(list[swap] < list[child]) {
+					swap = child;
+				} if(child+1 <= end && list[swap] < list[child+1]) {
+					swap = child+1;
+				} if(swap == root) {
+					return;
+				} else {
+					swap(root,swap);
+					check = root;
+					root = swap;
+				}
+				compare+=3;	acc+=4;
+				Update();
+				delay();
+			}
+		}
+		public int iParent(int i) { return ((i-1)/2); } //parent of node in heap
+		public int iLeftChild(int i) { return 2*i + 1; } //left child of a node
+		
+		//quicksort
+		public void quickSort(int lo, int hi) {
+			if(!sorting)
+				return;
+			current = hi;
+			if(lo < hi) {
+				int p = partition(lo,hi);
+				quickSort(lo,p-1);
+				quickSort(p+1, hi);
+			}
+		}
+		
+		//partition
+		public int partition(int lo, int hi) {
+			int pivot = list[hi];	acc++;
+			int i = lo - 1;
+			for(int j = lo; j < hi; j++) {
+				check = j;
+				if(!sorting)
+					break;
+				if(list[j] < pivot) {
+					i++;
+					swap(i,j);	
+				}
+				compare++;	acc++;
+				Update();
+				delay();
+			}
+			swap(i+1,hi);
+			Update();
+			delay();
+			return i+1;
+		}
 
 
 		void merge(int l, int m, int r)
