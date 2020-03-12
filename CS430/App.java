@@ -60,8 +60,8 @@ public class App {
 	private String[] algorithms = { "Heap Sort",
 								    "Quick Sort",
 								    "Both"};
-	private String[] algInfo = {"Best Case: O (n)\nWorst Case: O (n^2)\nAverage: O (n^2)",
-								"Best Case: O (nlogn)\nWorst Case: O (nlogn)\nAverage: O (nlogn)",
+	private String[] algInfo = {"Best Case: O (nlogn)\nWorst Case: O (nlogn)\nAverage: O (nlogn)",
+								"Best Case: O (nlogn)\nWorst Case: O (n^2)\nAverage: O (nlogn)",
 								"Left is Heap Sort\nRight is Quick Sort "
 								};
 	private String[] algNameHeap = {"Heap Sort",
