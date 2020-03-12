@@ -1,7 +1,7 @@
 //TEAM NAME = NULL
 //TEAM MEMBERS = ADITYA DASGUPTA(seat 14) AND DEVYANI GAURI(seat 25)
 //HW-3
-package app.java;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
