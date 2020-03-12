@@ -58,7 +58,10 @@ public class App {
 	private int type = 0;
 	//ARRAYS
 	private int[] list;
-	private int[] list1;
+	private int[] list2;
+	private int[] list3;
+	private int[] list4;
+
 	//list2 = list;
 	private String[] types = {"Bar Graph"};
 	private String[] algorithms = { "Insertion Sort",
@@ -154,10 +157,15 @@ public class App {
 
 	public void createList() {
 		list = new int[len];
-		list1 = new int[len];//CREATES TWO LISTS EQUAL TO THE LENGTH
+		list2 = new int[len];//CREATES TWO LISTS EQUAL TO THE LENGTH
+		list3 = new int[len];
+		list4 = new int[len];
+
 		for(int i = 0; i < len; i++) {	//FILLS THE LIST FROM 1-LEN
 			list[i] = i+1;
-			list1[i] = i+1;
+			list2[i] = i+1;
+			list3[i] = i+1;
+			list4[i] = i+1;
 		}
 
 	}
@@ -167,12 +175,18 @@ public class App {
 		for(int a = 0; a < 500; a++) {	//SHUFFLE RUNS 500 TIMES
 			for(int i = 0; i < len; i++) {	//ACCESS EACH ELEMENT OF THE LIST
 				int rand = r.nextInt(len);	//PICK A RANDOM NUM FROM 0-LEN
-				int temp = list[i];
-				int temp1 = list[i];//SETS TEMP INT TO CURRENT ELEMENT
+				int temp = list[i];//SETS TEMP INT TO CURRENT ELEMENT
+				int temp2 = list[i];
+				int temp3 = list[i];
+				int temp4 = list[i];
 				list[i] = list[rand];		//SWAPS THE CURRENT INDEX WITH RANDOM INDEX
 				list[rand] = temp;
-				list1[i] = list1[rand];
-				list1[rand] = temp1;//SETS THE RANDOM INDEX TO THE TEMP
+				list2[i] = list2[rand];
+				list2[rand] = temp2;//SETS THE RANDOM INDEX TO THE TEMP
+				list3[i] = list3[rand];
+				list3[rand] = temp3;//SETS THE RANDOM INDEX TO THE TEMP
+				list4[i] = list4[rand];
+				list4[rand] = temp4;//SETS THE RANDOM INDEX TO THE TEMP
 			}
 		}
 		sorting = false;
@@ -554,7 +568,7 @@ public class App {
 
 	//UPDATES GRAPH 1  AND LABELS
 	public void Update() {
-		width = (int) ((SIZE/len)+ 1);
+		width = (SIZE/len)+ 1;
 		canvas.repaint();
 		canvas2.repaint();
 		canvas3.repaint();
@@ -639,7 +653,7 @@ class GraphCanvas2 extends JPanel {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			for(int i = 0; i < len; i++) {	//RUNS TROUGH EACH ELEMENT OF THE LIST
-				int HEIGHT = (list1[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+				int HEIGHT = (list2[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
 					g.setColor(Color.decode("#da4703"));	//DEFAULT COLOR
 					if(current > -1 && i == current) {
@@ -666,7 +680,7 @@ class GraphCanvas3 extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for(int i = 0; i < len; i++) {	//RUNS TROUGH EACH ELEMENT OF THE LIST
-			int HEIGHT = (list1[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+			int HEIGHT = (list3[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
 				g.setColor(Color.decode("#fcba03"));	//DEFAULT COLOR
 				if(current > -1 && i == current) {
@@ -694,7 +708,7 @@ class GraphCanvas3 extends JPanel {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			for (int i = 0; i < len; i++) { // RUNS TROUGH EACH ELEMENT OF THE LIST
-				int HEIGHT = (list1[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+				int HEIGHT = (list4[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
 				g.setColor(Color.decode("#ce03fc")); // DEFAULT COLOR
 				if (current > -1 && i == current) {
@@ -903,10 +917,10 @@ class GraphCanvas3 extends JPanel {
 			for(int i = start+1; i <= end; i++) {
 				current = i; //decides what element should be key
 				int j = i;
-				while(list[j] < list[j-1] && sorting) {
+				while(list2[j] < list2[j-1] && sorting) {
 					swap2(j,j-1); //this is where the sorting takes place
 					check = j;
-					compare++;	acc+=2; //this is how we set the comparison and array access numbers
+					compare2++;	acc2+=2; //this is how we set the comparison and array access numbers
 
 					Update2();
 					delay();
@@ -944,9 +958,9 @@ class GraphCanvas3 extends JPanel {
 				int child = iLeftChild(root);
 				int swap = root;
 				check = root;
-				if(list[swap] < list[child]) {
+				if(list2[swap] < list2[child]) {
 					swap = child;
-				} if(child+1 <= end && list[swap] < list[child+1]) {
+				} if(child+1 <= end && list2[swap] < list2[child+1]) {
 					swap = child+1;
 				} if(swap == root) {
 					return;
@@ -955,7 +969,7 @@ class GraphCanvas3 extends JPanel {
 					check = root;
 					root = swap;
 				}
-				compare+=3;	acc+=4;
+				compare2+=3;	acc2+=4;
 				Update2();
 				delay();
 			}
@@ -977,18 +991,18 @@ class GraphCanvas3 extends JPanel {
 
 		//partition
 		public int partition2(int lo, int hi) {
-			int pivot = list[hi];	acc++;
+			int pivot = list2[hi];	acc2++;
 			int i = lo - 1;
 			for(int j = lo; j < hi; j++) {
 				check = j;
 				if(!sorting)
 					break;
-				if(list[j] < pivot) {
+				if(list2[j] < pivot) {
 					i++;
 					swap2(i,j);
 				}
-				compare++;	acc++;
-				Update();
+				compare2++;	acc2++;
+				Update2();
 				delay();
 			}
 			swap2(i+1,hi);
@@ -1007,10 +1021,10 @@ class GraphCanvas3 extends JPanel {
 					int R[] = new int [n2];
 
 					for (int i=0; i<n1; i++) {
-							L[i] = list[l + i];	acc++;
+							L[i] = list2[l + i];	acc2++;
 					}
 					for (int j=0; j<n2; j++) {
-							R[j] = list[m + 1+ j];	acc++;
+							R[j] = list2[m + 1+ j];	acc2++;
 					}
 					int i = 0, j = 0;
 
@@ -1019,20 +1033,20 @@ class GraphCanvas3 extends JPanel {
 					while (i < n1 && j < n2 && sorting) {
 						check = k;
 							if (L[i] <= R[j]) {
-									list[k] = L[i];	acc++;
+									list2[k] = L[i];	acc2++;
 									i++;
 							} else {
-									list[k] = R[j];	acc++;
+									list2[k] = R[j];	acc2++;
 									j++;
 							}
-							compare++;
+							compare2++;
 							Update2();
 							delay();
 							k++;
 					}
 
 					while (i < n1 && sorting) {
-							list[k] = L[i];	acc++;
+							list2[k] = L[i];	acc2++;
 							i++;
 							k++;
 							Update2();
@@ -1040,7 +1054,7 @@ class GraphCanvas3 extends JPanel {
 					}
 
 					while (j < n2 && sorting) {
-							list[k] = R[j];	acc++;
+							list2[k] = R[j];	acc2++;
 							j++;
 							k++;
 							Update2();
@@ -1061,15 +1075,15 @@ class GraphCanvas3 extends JPanel {
 			}
 			//this is where the sorting happens
 		public void swap2(int i1, int i2) {
-			int temp = list[i1];	acc++;
-			list[i1] = list[i2];	acc+=2;
-			list[i2] = temp;	acc++;
+			int temp = list2[i1];	acc2++;
+			list2[i1] = list2[i2];	acc2+=2;
+			list2[i2] = temp;	acc2++;
 		}
 
 
 		public boolean checkSorted2() {
 			for(int i = 0; i < len-1; i++) {
-				if(list[i] > list[i+1]) {	acc+=2;
+				if(list2[i] > list2[i+1]) {	acc2+=2;
 					return false;
 				}
 			}
@@ -1085,10 +1099,10 @@ class GraphCanvas3 extends JPanel {
 			for(int i = start+1; i <= end; i++) {
 				current = i; //decides what element should be key
 				int j = i;
-				while(list[j] < list[j-1] && sorting) {
+				while(list3[j] < list3[j-1] && sorting) {
 					swap3(j,j-1); //this is where the sorting takes place
 					check = j;
-					compare++;	acc+=2; //this is how we set the comparison and array access numbers
+					compare3++;	acc3+=2; //this is how we set the comparison and array access numbers
 
 					Update3();
 					delay();
@@ -1126,9 +1140,9 @@ class GraphCanvas3 extends JPanel {
 				int child = iLeftChild(root);
 				int swap = root;
 				check = root;
-				if(list[swap] < list[child]) {
+				if(list3[swap] < list3[child]) {
 					swap = child;
-				} if(child+1 <= end && list[swap] < list[child+1]) {
+				} if(child+1 <= end && list3[swap] < list3[child+1]) {
 					swap = child+1;
 				} if(swap == root) {
 					return;
@@ -1137,7 +1151,7 @@ class GraphCanvas3 extends JPanel {
 					check = root;
 					root = swap;
 				}
-				compare+=3;	acc+=4;
+				compare3+=3;	acc3+=4;
 				Update3();
 				delay();
 			}
@@ -1159,17 +1173,17 @@ class GraphCanvas3 extends JPanel {
 
 		//partition
 		public int partition3(int lo, int hi) {
-			int pivot = list[hi];	acc++;
+			int pivot = list3[hi];	acc3++;
 			int i = lo - 1;
 			for(int j = lo; j < hi; j++) {
 				check = j;
 				if(!sorting)
 					break;
-				if(list[j] < pivot) {
+				if(list3[j] < pivot) {
 					i++;
 					swap3(i,j);
 				}
-				compare++;	acc++;
+				compare3++;	acc3++;
 				Update3();
 				delay();
 			}
@@ -1189,10 +1203,10 @@ class GraphCanvas3 extends JPanel {
 					int R[] = new int [n2];
 
 					for (int i=0; i<n1; i++) {
-							L[i] = list[l + i];	acc++;
+							L[i] = list[l + i];	acc3++;
 					}
 					for (int j=0; j<n2; j++) {
-							R[j] = list[m + 1+ j];	acc++;
+							R[j] = list[m + 1+ j];	acc3++;
 					}
 					int i = 0, j = 0;
 
@@ -1201,20 +1215,20 @@ class GraphCanvas3 extends JPanel {
 					while (i < n1 && j < n2 && sorting) {
 						check = k;
 							if (L[i] <= R[j]) {
-									list[k] = L[i];	acc++;
+									list3[k] = L[i];	acc3++;
 									i++;
 							} else {
-									list[k] = R[j];	acc++;
+									list3[k] = R[j];	acc3++;
 									j++;
 							}
-							compare++;
+							compare3++;
 							Update3();
 							delay();
 							k++;
 					}
 
 					while (i < n1 && sorting) {
-							list[k] = L[i];	acc++;
+							list3[k] = L[i];	acc3++;
 							i++;
 							k++;
 							Update3();
@@ -1222,7 +1236,7 @@ class GraphCanvas3 extends JPanel {
 					}
 
 					while (j < n2 && sorting) {
-							list[k] = R[j];	acc++;
+							list3[k] = R[j];	acc3++;
 							j++;
 							k++;
 							Update3();
@@ -1243,15 +1257,15 @@ class GraphCanvas3 extends JPanel {
 			}
 			//this is where the sorting happens
 		public void swap3(int i1, int i2) {
-			int temp = list[i1];	acc++;
-			list[i1] = list[i2];	acc+=2;
-			list[i2] = temp;	acc++;
+			int temp = list3[i1];	acc3++;
+			list3[i1] = list3[i2];	acc3+=2;
+			list3[i2] = temp;	acc3++;
 		}
 
 
 		public boolean checkSorted3() {
 			for(int i = 0; i < len-1; i++) {
-				if(list[i] > list[i+1]) {	acc+=2;
+				if(list3[i] > list3[i+1]) {	acc3+=2;
 					return false;
 				}
 			}
@@ -1267,10 +1281,10 @@ class GraphCanvas3 extends JPanel {
 			for(int i = start+1; i <= end; i++) {
 				current = i; //decides what element should be key
 				int j = i;
-				while(list[j] < list[j-1] && sorting) {
+				while(list4[j] < list4[j-1] && sorting) {
 					swap4(j,j-1); //this is where the sorting takes place
 					check = j;
-					compare++;	acc+=2; //this is how we set the comparison and array access numbers
+					compare4++;	acc4+=2; //this is how we set the comparison and array access numbers
 
 					Update4();
 					delay();
@@ -1308,9 +1322,9 @@ class GraphCanvas3 extends JPanel {
 				int child = iLeftChild(root);
 				int swap = root;
 				check = root;
-				if(list[swap] < list[child]) {
+				if(list4[swap] < list4[child]) {
 					swap = child;
-				} if(child+1 <= end && list[swap] < list[child+1]) {
+				} if(child+1 <= end && list4[swap] < list4[child+1]) {
 					swap = child+1;
 				} if(swap == root) {
 					return;
@@ -1319,7 +1333,7 @@ class GraphCanvas3 extends JPanel {
 					check = root;
 					root = swap;
 				}
-				compare+=3;	acc+=4;
+				compare4+=3;	acc4+=4;
 				Update4();
 				delay();
 			}
@@ -1341,17 +1355,17 @@ class GraphCanvas3 extends JPanel {
 
 		//partition
 		public int partition4(int lo, int hi) {
-			int pivot = list[hi];	acc++;
+			int pivot = list4[hi];	acc4++;
 			int i = lo - 1;
 			for(int j = lo; j < hi; j++) {
 				check = j;
 				if(!sorting)
 					break;
-				if(list[j] < pivot) {
+				if(list4[j] < pivot) {
 					i++;
 					swap4(i,j);
 				}
-				compare++;	acc++;
+				compare4++;	acc4++;
 				Update4();
 				delay();
 			}
@@ -1371,10 +1385,10 @@ class GraphCanvas3 extends JPanel {
 					int R[] = new int [n2];
 
 					for (int i=0; i<n1; i++) {
-							L[i] = list[l + i];	acc++;
+							L[i] = list4[l + i];	acc4++;
 					}
 					for (int j=0; j<n2; j++) {
-							R[j] = list[m + 1+ j];	acc++;
+							R[j] = list4[m + 1+ j];	acc4++;
 					}
 					int i = 0, j = 0;
 
@@ -1383,20 +1397,20 @@ class GraphCanvas3 extends JPanel {
 					while (i < n1 && j < n2 && sorting) {
 						check = k;
 							if (L[i] <= R[j]) {
-									list[k] = L[i];	acc++;
+									list4[k] = L[i];	acc4++;
 									i++;
 							} else {
-									list[k] = R[j];	acc++;
+									list4[k] = R[j];	acc4++;
 									j++;
 							}
-							compare++;
+							compare4++;
 							Update4();
 							delay();
 							k++;
 					}
 
 					while (i < n1 && sorting) {
-							list[k] = L[i];	acc++;
+							list4[k] = L[i];	acc4++;
 							i++;
 							k++;
 							Update4();
@@ -1404,7 +1418,7 @@ class GraphCanvas3 extends JPanel {
 					}
 
 					while (j < n2 && sorting) {
-							list[k] = R[j];	acc++;
+							list4[k] = R[j];	acc4++;
 							j++;
 							k++;
 							Update4();
@@ -1425,15 +1439,15 @@ class GraphCanvas3 extends JPanel {
 			}
 			//this is where the sorting happens
 		public void swap4(int i1, int i2) {
-			int temp = list[i1];	acc++;
-			list[i1] = list[i2];	acc+=2;
-			list[i2] = temp;	acc++;
+			int temp = list4[i1];	acc4++;
+			list4[i1] = list4[i2];	acc4+=2;
+			list4[i2] = temp;	acc4++;
 		}
 
 
 		public boolean checkSorted4() {
 			for(int i = 0; i < len-1; i++) {
-				if(list[i] > list[i+1]) {	acc+=2;
+				if(list4[i] > list4[i+1]) {	acc4+=2;
 					return false;
 				}
 			}
