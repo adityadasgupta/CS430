@@ -707,7 +707,7 @@ class SortingAlgorithms1 {
 			return true;
 		}
 	}
-}
+
 
 //sorting algorithm 3 
 class SortingAlgorithms2 {
@@ -810,4 +810,5 @@ class SortingAlgorithms2 {
 		return true;
 	}
 
+}
 }
