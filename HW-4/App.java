@@ -1,6 +1,6 @@
 //TEAM NAME = NULL
 //TEAM MEMBERS = ADITYA DASGUPTA(seat 14) AND DEVYANI GAURI(seat 25)
-//HW-3
+//HW-4
 
 import java.awt.Color;
 import java.awt.Component;
@@ -45,10 +45,14 @@ public class App {
 	private int compare2 = 0;
 	private int compare3 = 0;
 	private int compare4 = 0;
+	private int compare5 = 0;
+	private int compare6 = 0;
 	private int acc = 0;
 	private int acc2 = 0;
 	private int acc3 = 0;
 	private int acc4 = 0;
+	private int acc5 = 0;
+	private int acc6 = 0;
 	private long timeEl = 0 ;
 	//GRAPH VARIABLES
 	private final int SIZE = 320;
@@ -58,13 +62,20 @@ public class App {
 	private int type = 0;
 	//ARRAYS
 	private int[] list;
-	private int[] list1;
+	private int[] list2;
+	private int[] list3;
+	private int[] list4;
+	private int[] list5;
+	private int[] list6;
+
 	//list2 = list;
 	private String[] types = {"Bar Graph"};
 	private String[] algorithms = { "Insertion Sort",
 								    "Merge Sort",
 								    "Heap Sort",
 								    "Quick Sort",
+										"Counting Sort",
+										"Radix Sort",
 								    "All"};
 	private String[] algInfo = {"Best Case: O (n)\nWorst Case: O (n^2)\nAverage: O (n^2)",
 								"Best Case: O (nlogn)\nWorst Case: O (nlogn)\nAverage: O (nlogn)",
@@ -74,27 +85,52 @@ public class App {
 									"Merge Sort",
 									"Heap Sort",
 									"Quick Sort",
+									"Count Sort",
+									"Radix Sort",
 									"Insertion Sort"
 								  };
 	private String[] algNameMerge = {"Insertion Sort",
 									 "Merge Sort",
 									 "Heap Sort",
 									 "Quick Sort",
+									 "Count Sort,",
+									 "Radix Sort",
 									 "Merge Sort"
 									};
 	private String[] algNameHeap = {"Insertion Sort",
 			                        "Merge Sort",
 			                        "Heap Sort",
 			                        "Quick Sort",
+			                        "Count Sort,",
+									"Radix Sort",
 			                        "Heap Sort"
 			                       };
 	private String[] algNameQuick = {"Insertion Sort",
                                      "Merge Sort",
                                      "Heap Sort",
                                      "Quick Sort",
+                                     "Count Sort,",
+									 "Radix Sort",
                                      "Quick Sort"
                                      };
 
+	private String[] algNameCount = {"Insertion Sort",
+                                     "Merge Sort",
+                                     "Heap Sort",
+                                     "Quick Sort",
+                                     "Count Sort,",
+									 "Radix Sort",
+                                     "Count Sort"
+                                     };
+
+	private String[] algNameRadix = {"Insertion Sort",
+                                     "Merge Sort",
+                                     "Heap Sort",
+                                     "Quick Sort",
+                                     "Count Sort,",
+									 "Radix Sort",
+                                     "Radix Sort"
+                                     };
 
 	Font f = new Font("Raleway", Font.BOLD,20);
 	//BOOLEANS
@@ -105,6 +141,8 @@ public class App {
 	SortingAlgorithms2 algorithm2 = new SortingAlgorithms2();
 	SortingAlgorithms3 algorithm3 = new SortingAlgorithms3();
 	SortingAlgorithms4 algorithm4 = new SortingAlgorithms4();
+  SortingAlgorithms5 algorithm5 = new SortingAlgorithms5();
+  SortingAlgorithms6 algorithm6 = new SortingAlgorithms6();
 
 	Random r = new Random();
 	//PANELS
@@ -113,6 +151,9 @@ public class App {
 	GraphCanvas2 canvas2;
 	GraphCanvas3 canvas3;
 	GraphCanvas4 canvas4;
+	GraphCanvas5 canvas5;
+	GraphCanvas6 canvas6;
+
 	//LABELS
 	JLabel msL = new JLabel(spd+" ms");
 	JLabel sizeL = new JLabel("Size :");
@@ -121,10 +162,14 @@ public class App {
 	JLabel compareL2 = new JLabel("Comparisons(Graph 2) : " + compare2);
 	JLabel compareL3 = new JLabel("Comparisons(Graph 3) : " + compare3);
 	JLabel compareL4 = new JLabel("Comparisons(Graph 4) : " + compare4);
+	JLabel compareL5 = new JLabel("Comparisons(Graph 5) : " + compare5);
+	JLabel compareL6 = new JLabel("Comparisons(Graph 6) : " + compare6);
 	JLabel accessL = new JLabel("Array Accesses(Graph 1) : " + acc);
 	JLabel accessL2 = new JLabel("Array Accesses(Graph 2) : " + acc2);
 	JLabel accessL3 = new JLabel("Array Accesses(Graph 3) : " + acc3);
 	JLabel accessL4 = new JLabel("Array Accesses(Graph 4) : " + acc4);
+	JLabel accessL5 = new JLabel("Array Accesses(Graph 5) : " + acc5);
+	JLabel accessL6 = new JLabel("Array Accesses(Graph 6) : " + acc6);
 
 	JLabel algorithmL = new JLabel("Algorithms");
 	//DROP DOWN BOX
@@ -136,7 +181,8 @@ public class App {
 	JTextArea algMerge = new JTextArea(algNameMerge[curAlg]);
 	JTextArea algHeap = new JTextArea(algNameHeap[curAlg]);
 	JTextArea algQuick = new JTextArea(algNameQuick[curAlg]);
-
+    JTextArea algCount = new JTextArea(algNameCount[curAlg]);
+    JTextArea algRadix = new JTextArea(algNameRadix[curAlg]);
 	JTextArea timeElapsed = new JTextArea("Time Elapsed : " + timeEl + " units");
 	//BUTTONS
 	JButton sort = new JButton("Sort");
@@ -154,10 +200,18 @@ public class App {
 
 	public void createList() {
 		list = new int[len];
-		list1 = new int[len];//CREATES TWO LISTS EQUAL TO THE LENGTH
+		list2 = new int[len];//CREATES TWO LISTS EQUAL TO THE LENGTH
+		list3 = new int[len];
+		list4 = new int[len];
+		list5 = new int[len];
+		list6 = new int[len];
 		for(int i = 0; i < len; i++) {	//FILLS THE LIST FROM 1-LEN
 			list[i] = i+1;
-			list1[i] = i+1;
+			list2[i] = i+1;
+			list3[i] = i+1;
+			list4[i] = i+1;
+			list5[i] = i+1;
+			list6[i] = i+1;
 		}
 
 	}
@@ -168,11 +222,23 @@ public class App {
 			for(int i = 0; i < len; i++) {	//ACCESS EACH ELEMENT OF THE LIST
 				int rand = r.nextInt(len);	//PICK A RANDOM NUM FROM 0-LEN
 				int temp = list[i];
-				int temp1 = list[i];//SETS TEMP INT TO CURRENT ELEMENT
+				int temp2 = list[i];//SETS TEMP INT TO CURRENT ELEMENT
+				int temp3 = list[i];
+				int temp4 = list[i];
+				int temp5 = list[i];
+				int temp6 = list[i];
 				list[i] = list[rand];		//SWAPS THE CURRENT INDEX WITH RANDOM INDEX
 				list[rand] = temp;
-				list1[i] = list1[rand];
-				list1[rand] = temp1;//SETS THE RANDOM INDEX TO THE TEMP
+				list2[i] = list2[rand];
+				list2[rand] = temp2;//SETS THE RANDOM INDEX TO THE TEMP
+				list3[i] = list3[rand];
+				list3[rand] = temp3;//SETS THE RANDOM INDEX TO THE TEMP
+				list4[i] = list4[rand];
+				list4[rand] = temp4;//SETS THE RANDOM INDEX TO THE TEMP
+				list5[i] = list5[rand];
+				list5[rand] = temp5;//SETS THE RANDOM INDEX TO THE TEMP
+				list6[i] = list6[rand];
+				list6[rand] = temp6;//SETS THE RANDOM INDEX TO THE TEMP
 			}
 		}
 		sorting = false;
@@ -226,12 +292,30 @@ public class App {
 
 		//SET UP GRAPH 4 NAME
 		algQuick.setBounds(720,40,230,30);
-	    algQuick.setBackground(Color.decode("#ffffff"));
+	  algQuick.setBackground(Color.decode("#ffffff"));
 		algQuick.setBorder(loweredetched);
 		algQuick.setForeground(Color.decode("#ce03fc"));
 		algQuick.setFont(f);
 		algQuick.setEditable(false);
 		tools.add(algQuick);
+
+   //SET UP GRAPH 5 NAME
+		algCount.setBounds(720,40,230,30);
+	    algCount.setBackground(Color.decode("#ffffff"));
+		algCount.setBorder(loweredetched);
+		algCount.setForeground(Color.decode("#ce03fc"));
+		algCount.setFont(f);
+		algCount.setEditable(false);
+		tools.add(algCount);
+
+    //SET UP GRAPH 6 NAME
+		algRadix.setBounds(720,40,230,30);
+		algRadix.setBackground(Color.decode("#ffffff"));
+		algRadix.setBorder(loweredetched);
+		algRadix.setForeground(Color.decode("#ce03fc"));
+		algRadix.setFont(f);
+		algRadix.setEditable(false);
+		tools.add(algRadix);
 
 		//SET UP ALGORITHM LABEL
 		algorithmL.setHorizontalAlignment(JLabel.CENTER);
@@ -292,22 +376,22 @@ public class App {
 		tools.add(size);*/
 
 		//SET UP COMPARISONS LABEL FOR 1ST GRAPH
-        compareL.setHorizontalAlignment(JLabel.LEFT);
-        compareL.setBackground(Color.decode("#beebea"));
+    compareL.setHorizontalAlignment(JLabel.LEFT);
+    compareL.setBackground(Color.decode("#beebea"));
 		compareL.setBounds(720,90,500,25);
 		compareL.setFont(f);
 		tools.add(compareL);
 
 		//SET UP COMPARISONS LABEL FOR 2ND GRAPH
 		compareL2.setHorizontalAlignment(JLabel.LEFT);
-	    compareL2.setBackground(Color.decode("#beebea"));
+	  compareL2.setBackground(Color.decode("#beebea"));
 		compareL2.setBounds(1020,90,500,25);
 		compareL2.setFont(f);
 		tools.add(compareL2);
 
 		//SET UP COMPARISONS LABEL FOR 3RD GRAPH
 		compareL3.setHorizontalAlignment(JLabel.LEFT);
-	    compareL3.setBackground(Color.decode("#beebea"));
+	  compareL3.setBackground(Color.decode("#beebea"));
 		compareL3.setBounds(720,155,500,25);
 		compareL3.setFont(f);
 		tools.add(compareL3);
@@ -319,30 +403,44 @@ public class App {
 		compareL4.setFont(f);
 		tools.add(compareL4);
 
+		//SET UP COMPARISONS LABEL FOR 5TH GRAPH
+		compareL5.setHorizontalAlignment(JLabel.LEFT);
+		compareL5.setBackground(Color.decode("#beebea"));
+		compareL5.setBounds(1020,155,500,25);
+		compareL5.setFont(f);
+		tools.add(compareL5);
+
+		//SET UP COMPARISONS LABEL FOR 6TH GRAPH
+		compareL6.setHorizontalAlignment(JLabel.LEFT);
+		compareL6.setBackground(Color.decode("#beebea"));
+		compareL6.setBounds(1020,155,500,25);
+		compareL6.setFont(f);
+		tools.add(compareL6);
+
 		//SET UP ARRAY ACCESS LABEL FOR 1ST GRAPH
-        accessL.setHorizontalAlignment(JLabel.LEFT);
-        accessL.setBackground(Color.decode("#beebea"));
+    accessL.setHorizontalAlignment(JLabel.LEFT);
+    accessL.setBackground(Color.decode("#beebea"));
 		accessL.setBounds(720,120,500,25);
 		accessL.setFont(f);
 		tools.add(accessL);
 
 		//SET UP ARRAY ACCESS LABEL FOR 2ND GRAPH
-        accessL2.setHorizontalAlignment(JLabel.LEFT);
-        accessL2.setBackground(Color.decode("#beebea"));
+    accessL2.setHorizontalAlignment(JLabel.LEFT);
+    accessL2.setBackground(Color.decode("#beebea"));
 		accessL2.setBounds(1020,120,500,25);
 		accessL2.setFont(f);
 		tools.add(accessL2);
 
 		//SET UP ARRAY ACCESS LABEL FOR 3RD GRAPH
-        accessL3.setHorizontalAlignment(JLabel.LEFT);
-        accessL3.setBackground(Color.decode("#beebea"));
+    accessL3.setHorizontalAlignment(JLabel.LEFT);
+    accessL3.setBackground(Color.decode("#beebea"));
 		accessL3.setBounds(720,180,500,25);
 		accessL3.setFont(f);
 		tools.add(accessL3);
 
 		//SET UP ARRAY ACCESS LABEL FOR 4TH GRAPH
-        accessL4.setHorizontalAlignment(JLabel.LEFT);
-        accessL4.setBackground(Color.decode("#beebea"));
+    accessL4.setHorizontalAlignment(JLabel.LEFT);
+    accessL4.setBackground(Color.decode("#beebea"));
 		accessL4.setBounds(1020,180,500,25);
 		accessL4.setFont(f);
 		tools.add(accessL4);
@@ -371,17 +469,34 @@ public class App {
 		jf.getContentPane().add(canvas2);
 		//JTextPane textPane = new JTextPane();
 
+		//SET UP CANVAS FOR THIRD GRAPH
 		canvas3 = new GraphCanvas3();
 		canvas3.setBounds(30,350,SIZE+100,SIZE);
 		canvas3.setBorder(BorderFactory.createLineBorder(Color.black));
 		jf.getContentPane().add(tools);
 		jf.getContentPane().add(canvas3);
 
+		//SET UP CANVAS FOR FOURTH GRAPH
 		canvas4 = new GraphCanvas4();
 		canvas4.setBounds(650,350,SIZE+100,SIZE);
 		canvas4.setBorder(BorderFactory.createLineBorder(Color.black));
 		jf.getContentPane().add(tools);
 		jf.getContentPane().add(canvas4);
+
+		//SET UP CANVAS FOR FIFTH GRAPH
+		canvas5 = new GraphCanvas5();
+		canvas5.setBounds(650,350,SIZE+100,SIZE);
+		canvas5.setBorder(BorderFactory.createLineBorder(Color.black));
+		jf.getContentPane().add(tools);
+		jf.getContentPane().add(canvas5);
+
+		//SET UP CANVAS FOR FOURTH GRAPH
+		canvas6 = new GraphCanvas6();
+		canvas6.setBounds(650,350,SIZE+100,SIZE);
+		canvas6.setBorder(BorderFactory.createLineBorder(Color.black));
+		jf.getContentPane().add(tools);
+		jf.getContentPane().add(canvas6);
+
 		//ADD ACTION LISTENERS
 		//This action listener sets the text of "information" based on what sorting algorithm we choose
 		alg.addItemListener(new ItemListener() {
@@ -417,11 +532,29 @@ public class App {
 			}
 
 		});
-		//This action listener sets the text of the name of Graph 3 based on what sorting algorithm we choose
+		//This action listener sets the text of the name of Graph 4 based on what sorting algorithm we choose
 		alg.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				curAlg = alg.getSelectedIndex();
 				algQuick.setText(algNameQuick[curAlg]);
+			}
+
+		});
+
+		//This action listener sets the text of the name of Graph 5 based on what sorting algorithm we choose
+		alg.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				curAlg = alg.getSelectedIndex();
+				algCount.setText(algNameCount[curAlg]);
+			}
+
+		});
+
+		//This action listener sets the text of the name of Graph 6 based on what sorting algorithm we choose
+		alg.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				curAlg = alg.getSelectedIndex();
+				algRadix.setText(algNameRadix[curAlg]);
 			}
 
 		});
@@ -435,10 +568,14 @@ public class App {
 					compare2 = 0;
 					compare3 = 0;
 					compare4 = 0;
+					compare5 = 0;
+					compare6 = 0;
 					acc = 0;
 					acc2 = 0;
 					acc3 = 0;
 					acc4 = 0;
+					acc5 = 0;
+					acc6 = 0;
 					//timeEl = 0;
 
 				}
@@ -493,28 +630,59 @@ public class App {
 						algorithm2.insertionSort2(0, len-1);
 						algorithm3.insertionSort3(0, len-1);
 						algorithm4.insertionSort4(0, len-1);
+						algorithm5.insertionSort5(0, len-1);
+						algorithm6.insertionSort6(0, len-1);
 						break;
 					case 1:
 						algorithm1.mergeSort(0, len-1);
 						algorithm2.mergeSort2(0, len-1);
 						algorithm3.mergeSort3(0, len-1);
 						algorithm4.mergeSort4(0, len-1);
+						algorithm5.mergeSort5(0, len-1);
+						algorithm6.mergeSort6(0, len-1);
 						break;
 					case 2:
 						algorithm1.heapSort(0,len-1);
 						algorithm2.heapSort2(0,len-1);
 						algorithm3.heapSort3(0,len-1);
 						algorithm4.heapSort4(0,len-1);
+						algorithm5.heapSort5(0, len-1);
+						algorithm6.heapSort6(0, len-1);
+						break;
 					case 3:
 						algorithm1.quickSort(0,len-1);
 						algorithm2.quickSort2(0,len-1);
 						algorithm3.quickSort3(0,len-1);
 						algorithm4.quickSort4(0,len-1);
+						algorithm5.quickSort5(0,len-1);
+						algorithm6.quickSort6(0,len-1);
+						break;
 					case 4:
+						algorithm1.countSort(0,len-1);
+						algorithm2.countSort2(0,len-1);
+						algorithm3.countSort3(0,len-1);
+						algorithm4.countSort4(0,len-1);
+						algorithm5.countSort5(0,len-1);
+						algorithm6.countSort6(0,len-1);
+						break;
+					case 5:
+						algorithm1.radixSort(0,len-1);
+						algorithm2.radixSort2(0,len-1);
+						algorithm3.radixSort3(0,len-1);
+						algorithm4.radixSort4(0,len-1);
+						algorithm5.radixSort5(0,len-1);
+						algorithm6.radixSort6(0,len-1);
+						break;
+					case 6:
 						algorithm1.insertionSort(0,len-1);
 						algorithm2.mergeSort2(0,len-1);
 						algorithm3.heapSort3(0,len-1);
 						algorithm4.quickSort4(0,len-1);
+						algorithm5.countSort5(0,len-1);
+						algorithm6.radixSort6(0,len-1);
+						break;
+
+
 				}
 			} catch(IndexOutOfBoundsException e) {}	//EXCEPTION HANDLER INCASE LIST ACCESS IS OUT OF BOUNDS
 		}
@@ -559,6 +727,8 @@ public class App {
 		canvas2.repaint();
 		canvas3.repaint();
 		canvas4.repaint();
+		canvas5.repaint();
+		canvas6.repaint();
 		compareL.setText("Comparisons(Graph1) : " + compare);
 		accessL.setText("Array Accesses(Graph 1) : " + acc);
 		//timeElapsed.setText("Time Elapsed : " + timeEl + " units");
@@ -571,6 +741,8 @@ public class App {
 		canvas2.repaint();
 		canvas3.repaint();
 		canvas4.repaint();
+		canvas5.repaint();
+		canvas6.repaint();
 		compareL2.setText("Comparisons(Graph 2) : " + compare2);
 		accessL2.setText("Array Accesses(Graph 2) : " + acc2);
 		//timeElapsed.setText("Time Elapsed : " + timeEl + " units");
@@ -581,8 +753,10 @@ public class App {
 		canvas2.repaint();
 		canvas3.repaint();
 		canvas4.repaint();
-		compareL3.setText("Comparisons(Graph 2) : " + compare3);
-		accessL3.setText("Array Accesses(Graph 2) : " + acc3);
+		canvas5.repaint();
+		canvas6.repaint();
+		compareL3.setText("Comparisons(Graph 3) : " + compare3);
+		accessL3.setText("Array Accesses(Graph 3) : " + acc3);
 		//timeElapsed.setText("Time Elapsed : " + timeEl + " units");
 	}
 	public void Update4() {
@@ -591,8 +765,35 @@ public class App {
 		canvas2.repaint();
 		canvas3.repaint();
 		canvas4.repaint();
-		compareL4.setText("Comparisons(Graph 2) : " + compare4);
-		accessL4.setText("Array Accesses(Graph 2) : " + acc4);
+		canvas5.repaint();
+		canvas6.repaint();
+		compareL4.setText("Comparisons(Graph 4) : " + compare4);
+		accessL4.setText("Array Accesses(Graph 4) : " + acc4);
+		//timeElapsed.setText("Time Elapsed : " + timeEl + " units");
+	}
+
+	public void Update5() {
+		width = (SIZE/len)+1;
+		canvas.repaint();
+		canvas2.repaint();
+		canvas3.repaint();
+		canvas4.repaint();
+		canvas5.repaint();
+		canvas6.repaint();
+		compareL5.setText("Comparisons(Graph 5) : " + compare5);
+		accessL5.setText("Array Accesses(Graph 5) : " + acc5);
+		//timeElapsed.setText("Time Elapsed : " + timeEl + " units");
+	}
+	public void Update6() {
+		width = (SIZE/len)+1;
+		canvas.repaint();
+		canvas2.repaint();
+		canvas3.repaint();
+		canvas4.repaint();
+		canvas5.repaint();
+		canvas6.repaint();
+		compareL6.setText("Comparisons(Graph 6) : " + compare6);
+		accessL6.setText("Array Accesses(Graph 6) : " + acc6);
 		//timeElapsed.setText("Time Elapsed : " + timeEl + " units");
 	}
 
@@ -639,7 +840,7 @@ class GraphCanvas2 extends JPanel {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			for(int i = 0; i < len; i++) {	//RUNS TROUGH EACH ELEMENT OF THE LIST
-				int HEIGHT = (list1[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+				int HEIGHT = (list2[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
 					g.setColor(Color.decode("#da4703"));	//DEFAULT COLOR
 					if(current > -1 && i == current) {
@@ -666,7 +867,7 @@ class GraphCanvas3 extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for(int i = 0; i < len; i++) {	//RUNS TROUGH EACH ELEMENT OF THE LIST
-			int HEIGHT = (list1[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+			int HEIGHT = (list3[i]*width)-40;	//SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
 				g.setColor(Color.decode("#fcba03"));	//DEFAULT COLOR
 				if(current > -1 && i == current) {
@@ -694,7 +895,63 @@ class GraphCanvas3 extends JPanel {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			for (int i = 0; i < len; i++) { // RUNS TROUGH EACH ELEMENT OF THE LIST
-				int HEIGHT = (list1[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+				int HEIGHT = (list4[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+
+				g.setColor(Color.decode("#ce03fc")); // DEFAULT COLOR
+				if (current > -1 && i == current) {
+					g.setColor(Color.green); // COLOR OF CURRENT
+				}
+				if (check > -1 && i == check) {
+					g.setColor(Color.red); // COLOR OF CHECKING
+				}
+				// DRAWS THE BAR AND THE BLACK OUTLINE
+				g.fillRect(i * width, SIZE - HEIGHT, width, HEIGHT);
+				g.setColor(Color.black);
+				g.drawRect(i * width, SIZE - HEIGHT, width, HEIGHT);
+
+			}
+		}
+	}
+
+	class GraphCanvas5 extends JPanel {
+
+		public GraphCanvas5() {
+			setBackground(Color.white);
+		}
+
+		// PAINTS THE GRAPH
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			for (int i = 0; i < len; i++) { // RUNS TROUGH EACH ELEMENT OF THE LIST
+				int HEIGHT = (list5[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
+
+				g.setColor(Color.decode("#ce03fc")); // DEFAULT COLOR
+				if (current > -1 && i == current) {
+					g.setColor(Color.green); // COLOR OF CURRENT
+				}
+				if (check > -1 && i == check) {
+					g.setColor(Color.red); // COLOR OF CHECKING
+				}
+				// DRAWS THE BAR AND THE BLACK OUTLINE
+				g.fillRect(i * width, SIZE - HEIGHT, width, HEIGHT);
+				g.setColor(Color.black);
+				g.drawRect(i * width, SIZE - HEIGHT, width, HEIGHT);
+
+			}
+		}
+	}
+
+	class GraphCanvas6 extends JPanel {
+
+		public GraphCanvas6() {
+			setBackground(Color.white);
+		}
+
+		// PAINTS THE GRAPH
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			for (int i = 0; i < len; i++) { // RUNS TROUGH EACH ELEMENT OF THE LIST
+				int HEIGHT = (list6[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
 				g.setColor(Color.decode("#ce03fc")); // DEFAULT COLOR
 				if (current > -1 && i == current) {
@@ -892,6 +1149,69 @@ class GraphCanvas3 extends JPanel {
 			}
 			return true;
 		}
+		public void countSort(int n, int exp) {
+			int output[] = new int[n];	//OUTPUT SORTED LIST
+			int i;
+			int count[] = new int[10];  //THE INDEX ARRAY
+			Arrays.fill(count, 0);
+
+			for(i = 0; i < n; i++)	{
+				count[(list[i]/exp)%10]++;	acc++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+			}
+
+			for(i = 1; i < 10; i++) {
+				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+			}
+
+			for(i = n -1; i >= 0; i--) {
+				output[count[(list[i] / exp) % 10] - 1] = list[i];	acc++;  //BUILDING THE OUTPUT ARRAY
+				count[(list[i] / exp) % 10]--;	acc++;
+			}
+			for(i = 0; i < n; i++) {
+				if(!sorting)
+					break;
+				check = i;
+				list[i] = output[i];	acc++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+				Update();
+				delay();
+			}
+		}
+
+		public void radixSort(int n) {
+			int m = getMax(n);
+			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
+			 	if(!sorting)
+			 		break;
+				//countSort(n,exp);
+				int output[] = new int[n];	//OUTPUT SORTED LIST
+				int i;
+				int count[] = new int[10];  //THE INDEX ARRAY
+				Arrays.fill(count, 0);
+
+				for(i = 0; i < n; i++)	{
+					count[(list[i]/exp)%10]++;	acc++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				}
+
+				for(i = 1; i < 10; i++) {
+					count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+				}
+
+				for(i = n -1; i >= 0; i--) {
+					output[count[(list[i] / exp) % 10] - 1] = list[i];	acc++;  //BUILDING THE OUTPUT ARRAY
+					count[(list[i] / exp) % 10]--;	acc++;
+				}
+				for(i = 0; i < n; i++) {
+					if(!sorting)
+						break;
+					check = i;
+					list[i] = output[i];	acc++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+					Update();
+					delay();
+				}
+				Update();
+				delay();
+			 }
+		}
 
 	}
 
@@ -903,10 +1223,10 @@ class GraphCanvas3 extends JPanel {
 			for(int i = start+1; i <= end; i++) {
 				current = i; //decides what element should be key
 				int j = i;
-				while(list[j] < list[j-1] && sorting) {
+				while(list2[j] < list2[j-1] && sorting) {
 					swap2(j,j-1); //this is where the sorting takes place
 					check = j;
-					compare++;	acc+=2; //this is how we set the comparison and array access numbers
+					compare2++;	acc2+=2; //this is how we set the comparison and array access numbers
 
 					Update2();
 					delay();
@@ -944,9 +1264,9 @@ class GraphCanvas3 extends JPanel {
 				int child = iLeftChild(root);
 				int swap = root;
 				check = root;
-				if(list[swap] < list[child]) {
+				if(list2[swap] < list2[child]) {
 					swap = child;
-				} if(child+1 <= end && list[swap] < list[child+1]) {
+				} if(child+1 <= end && list2[swap] < list2[child+1]) {
 					swap = child+1;
 				} if(swap == root) {
 					return;
@@ -955,7 +1275,7 @@ class GraphCanvas3 extends JPanel {
 					check = root;
 					root = swap;
 				}
-				compare+=3;	acc+=4;
+				compare2+=3;	acc2+=4;
 				Update2();
 				delay();
 			}
@@ -977,18 +1297,18 @@ class GraphCanvas3 extends JPanel {
 
 		//partition
 		public int partition2(int lo, int hi) {
-			int pivot = list[hi];	acc++;
+			int pivot = list2[hi];	acc2++;
 			int i = lo - 1;
 			for(int j = lo; j < hi; j++) {
 				check = j;
 				if(!sorting)
 					break;
-				if(list[j] < pivot) {
+				if(list2[j] < pivot) {
 					i++;
 					swap2(i,j);
 				}
-				compare++;	acc++;
-				Update();
+				compare2++;	acc2++;
+				Update2();
 				delay();
 			}
 			swap2(i+1,hi);
@@ -1007,10 +1327,10 @@ class GraphCanvas3 extends JPanel {
 					int R[] = new int [n2];
 
 					for (int i=0; i<n1; i++) {
-							L[i] = list[l + i];	acc++;
+							L[i] = list2[l + i];	acc2++;
 					}
 					for (int j=0; j<n2; j++) {
-							R[j] = list[m + 1+ j];	acc++;
+							R[j] = list2[m + 1+ j];	acc2++;
 					}
 					int i = 0, j = 0;
 
@@ -1019,20 +1339,20 @@ class GraphCanvas3 extends JPanel {
 					while (i < n1 && j < n2 && sorting) {
 						check = k;
 							if (L[i] <= R[j]) {
-									list[k] = L[i];	acc++;
+									list2[k] = L[i];	acc2++;
 									i++;
 							} else {
-									list[k] = R[j];	acc++;
+									list2[k] = R[j];	acc2++;
 									j++;
 							}
-							compare++;
+							compare2++;
 							Update2();
 							delay();
 							k++;
 					}
 
 					while (i < n1 && sorting) {
-							list[k] = L[i];	acc++;
+							list2[k] = L[i];	acc2++;
 							i++;
 							k++;
 							Update2();
@@ -1040,7 +1360,7 @@ class GraphCanvas3 extends JPanel {
 					}
 
 					while (j < n2 && sorting) {
-							list[k] = R[j];	acc++;
+							list2[k] = R[j];	acc2++;
 							j++;
 							k++;
 							Update2();
@@ -1061,19 +1381,82 @@ class GraphCanvas3 extends JPanel {
 			}
 			//this is where the sorting happens
 		public void swap2(int i1, int i2) {
-			int temp = list[i1];	acc++;
-			list[i1] = list[i2];	acc+=2;
-			list[i2] = temp;	acc++;
+			int temp2 = list2[i1];	acc2++;
+			list2[i1] = list2[i2];	acc2+=2;
+			list2[i2] = temp2;	acc2++;
 		}
 
 
 		public boolean checkSorted2() {
 			for(int i = 0; i < len-1; i++) {
-				if(list[i] > list[i+1]) {	acc+=2;
+				if(list2[i] > list2[i+1]) {	acc2+=2;
 					return false;
 				}
 			}
 			return true;
+		}
+		public void countSort2(int n, int exp) {
+			int output[] = new int[n];	//OUTPUT SORTED LIST
+			int i;
+			int count[] = new int[10];  //THE INDEX ARRAY
+			Arrays.fill(count, 0);
+
+			for(i = 0; i < n; i++)	{
+				count[(list2[i]/exp)%10]++;	acc2++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+			}
+
+			for(i = 1; i < 10; i++) {
+				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+			}
+
+			for(i = n -1; i >= 0; i--) {
+				output[count[(list2[i] / exp) % 10] - 1] = list2[i];	acc2++;  //BUILDING THE OUTPUT ARRAY
+				count[(list2[i] / exp) % 10]--;	acc2++;
+			}
+			for(i = 0; i < n; i++) {
+				if(!sorting)
+					break;
+				check = i;
+				list2[i] = output[i];	acc2++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+				Update2();
+				delay();
+			}
+		}
+
+		public void radixSort2(int n) {
+			int m = getMax(n);
+			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
+			 	if(!sorting)
+			 		break;
+				//countSort(n,exp);
+				int output[] = new int[n];	//OUTPUT SORTED LIST
+				int i;
+				int count[] = new int[10];  //THE INDEX ARRAY
+				Arrays.fill(count, 0);
+
+				for(i = 0; i < n; i++)	{
+					count[(list2[i]/exp)%10]++;	acc2++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				}
+
+				for(i = 1; i < 10; i++) {
+					count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+				}
+
+				for(i = n -1; i >= 0; i--) {
+					output[count[(list2[i] / exp) % 10] - 1] = list2[i];	acc2++;  //BUILDING THE OUTPUT ARRAY
+					count[(list2[i] / exp) % 10]--;	acc2++;
+				}
+				for(i = 0; i < n; i++) {
+					if(!sorting)
+						break;
+					check = i;
+					list2[i] = output[i];	acc2++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+					Update2();
+					delay();
+				}
+				Update2();
+				delay();
+			 }
 		}
 
 	}
@@ -1085,10 +1468,10 @@ class GraphCanvas3 extends JPanel {
 			for(int i = start+1; i <= end; i++) {
 				current = i; //decides what element should be key
 				int j = i;
-				while(list[j] < list[j-1] && sorting) {
+				while(list3[j] < list3[j-1] && sorting) {
 					swap3(j,j-1); //this is where the sorting takes place
 					check = j;
-					compare++;	acc+=2; //this is how we set the comparison and array access numbers
+					compare3++;	acc3+=2; //this is how we set the comparison and array access numbers
 
 					Update3();
 					delay();
@@ -1126,9 +1509,9 @@ class GraphCanvas3 extends JPanel {
 				int child = iLeftChild(root);
 				int swap = root;
 				check = root;
-				if(list[swap] < list[child]) {
+				if(list3[swap] < list3[child]) {
 					swap = child;
-				} if(child+1 <= end && list[swap] < list[child+1]) {
+				} if(child+1 <= end && list3[swap] < list3[child+1]) {
 					swap = child+1;
 				} if(swap == root) {
 					return;
@@ -1137,7 +1520,7 @@ class GraphCanvas3 extends JPanel {
 					check = root;
 					root = swap;
 				}
-				compare+=3;	acc+=4;
+				compare3+=3;	acc3+=4;
 				Update3();
 				delay();
 			}
@@ -1159,17 +1542,17 @@ class GraphCanvas3 extends JPanel {
 
 		//partition
 		public int partition3(int lo, int hi) {
-			int pivot = list[hi];	acc++;
+			int pivot = list3[hi];	acc3++;
 			int i = lo - 1;
 			for(int j = lo; j < hi; j++) {
 				check = j;
 				if(!sorting)
 					break;
-				if(list[j] < pivot) {
+				if(list3[j] < pivot) {
 					i++;
 					swap3(i,j);
 				}
-				compare++;	acc++;
+				compare3++;	acc3++;
 				Update3();
 				delay();
 			}
@@ -1189,10 +1572,10 @@ class GraphCanvas3 extends JPanel {
 					int R[] = new int [n2];
 
 					for (int i=0; i<n1; i++) {
-							L[i] = list[l + i];	acc++;
+							L[i] = list3[l + i];	acc3++;
 					}
 					for (int j=0; j<n2; j++) {
-							R[j] = list[m + 1+ j];	acc++;
+							R[j] = list3[m + 1+ j];	acc3++;
 					}
 					int i = 0, j = 0;
 
@@ -1201,20 +1584,20 @@ class GraphCanvas3 extends JPanel {
 					while (i < n1 && j < n2 && sorting) {
 						check = k;
 							if (L[i] <= R[j]) {
-									list[k] = L[i];	acc++;
+									list3[k] = L[i];	acc3++;
 									i++;
 							} else {
-									list[k] = R[j];	acc++;
+									list3[k] = R[j];	acc3++;
 									j++;
 							}
-							compare++;
+							compare3++;
 							Update3();
 							delay();
 							k++;
 					}
 
 					while (i < n1 && sorting) {
-							list[k] = L[i];	acc++;
+							list3[k] = L[i];	acc3++;
 							i++;
 							k++;
 							Update3();
@@ -1222,7 +1605,7 @@ class GraphCanvas3 extends JPanel {
 					}
 
 					while (j < n2 && sorting) {
-							list[k] = R[j];	acc++;
+							list3[k] = R[j];	acc3++;
 							j++;
 							k++;
 							Update3();
@@ -1243,21 +1626,83 @@ class GraphCanvas3 extends JPanel {
 			}
 			//this is where the sorting happens
 		public void swap3(int i1, int i2) {
-			int temp = list[i1];	acc++;
-			list[i1] = list[i2];	acc+=2;
-			list[i2] = temp;	acc++;
+			int temp3 = list3[i1];	acc3++;
+			list3[i1] = list3[i2];	acc3+=2;
+			list3[i2] = temp3;	acc3++;
 		}
 
 
 		public boolean checkSorted3() {
 			for(int i = 0; i < len-1; i++) {
-				if(list[i] > list[i+1]) {	acc+=2;
+				if(list3[i] > list3[i+1]) {	acc3+=2;
 					return false;
 				}
 			}
 			return true;
 		}
+		public void countSort3(int n, int exp) {
+			int output[] = new int[n];	//OUTPUT SORTED LIST
+			int i;
+			int count[] = new int[10];  //THE INDEX ARRAY
+			Arrays.fill(count, 0);
 
+			for(i = 0; i < n; i++)	{
+				count[(list3[i]/exp)%10]++;	acc3++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+			}
+
+			for(i = 1; i < 10; i++) {
+				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+			}
+
+			for(i = n -1; i >= 0; i--) {
+				output[count[(list3[i] / exp) % 10] - 1] = list3[i];	acc3++;  //BUILDING THE OUTPUT ARRAY
+				count[(list3[i] / exp) % 10]--;	acc3++;
+			}
+			for(i = 0; i < n; i++) {
+				if(!sorting)
+					break;
+				check = i;
+				list3[i] = output[i];	acc3++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+				Update3();
+				delay();
+			}
+		}
+
+		public void radixSort3(int n) {
+			int m = getMax(n);
+			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
+			 	if(!sorting)
+			 		break;
+				//countSort(n,exp);
+				int output[] = new int[n];	//OUTPUT SORTED LIST
+				int i;
+				int count[] = new int[10];  //THE INDEX ARRAY
+				Arrays.fill(count, 0);
+
+				for(i = 0; i < n; i++)	{
+					count[(list3[i]/exp)%10]++;	acc3++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				}
+
+				for(i = 1; i < 10; i++) {
+					count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+				}
+
+				for(i = n -1; i >= 0; i--) {
+					output[count[(list3[i] / exp) % 10] - 1] = list3[i];	acc3++;  //BUILDING THE OUTPUT ARRAY
+					count[(list3[i] / exp) % 10]--;	acc3++;
+				}
+				for(i = 0; i < n; i++) {
+					if(!sorting)
+						break;
+					check = i;
+					list3[i] = output[i];	acc3++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+					Update3();
+					delay();
+				}
+				Update3();
+				delay();
+			 }
+		}
 	}
 	class SortingAlgorithms4 {
 
@@ -1267,10 +1712,10 @@ class GraphCanvas3 extends JPanel {
 			for(int i = start+1; i <= end; i++) {
 				current = i; //decides what element should be key
 				int j = i;
-				while(list[j] < list[j-1] && sorting) {
+				while(list4[j] < list4[j-1] && sorting) {
 					swap4(j,j-1); //this is where the sorting takes place
 					check = j;
-					compare++;	acc+=2; //this is how we set the comparison and array access numbers
+					compare4++;	acc4+=2; //this is how we set the comparison and array access numbers
 
 					Update4();
 					delay();
@@ -1308,9 +1753,9 @@ class GraphCanvas3 extends JPanel {
 				int child = iLeftChild(root);
 				int swap = root;
 				check = root;
-				if(list[swap] < list[child]) {
+				if(list4[swap] < list4[child]) {
 					swap = child;
-				} if(child+1 <= end && list[swap] < list[child+1]) {
+				} if(child+1 <= end && list4[swap] < list4[child+1]) {
 					swap = child+1;
 				} if(swap == root) {
 					return;
@@ -1319,7 +1764,7 @@ class GraphCanvas3 extends JPanel {
 					check = root;
 					root = swap;
 				}
-				compare+=3;	acc+=4;
+				compare4+=3;	acc4+=4;
 				Update4();
 				delay();
 			}
@@ -1341,17 +1786,17 @@ class GraphCanvas3 extends JPanel {
 
 		//partition
 		public int partition4(int lo, int hi) {
-			int pivot = list[hi];	acc++;
+			int pivot = list4[hi];	acc4++;
 			int i = lo - 1;
 			for(int j = lo; j < hi; j++) {
 				check = j;
 				if(!sorting)
 					break;
-				if(list[j] < pivot) {
+				if(list4[j] < pivot) {
 					i++;
 					swap4(i,j);
 				}
-				compare++;	acc++;
+				compare4++;	acc4++;
 				Update4();
 				delay();
 			}
@@ -1371,10 +1816,10 @@ class GraphCanvas3 extends JPanel {
 					int R[] = new int [n2];
 
 					for (int i=0; i<n1; i++) {
-							L[i] = list[l + i];	acc++;
+							L[i] = list4[l + i];	acc4++;
 					}
 					for (int j=0; j<n2; j++) {
-							R[j] = list[m + 1+ j];	acc++;
+							R[j] = list4[m + 1+ j];	acc4++;
 					}
 					int i = 0, j = 0;
 
@@ -1383,20 +1828,20 @@ class GraphCanvas3 extends JPanel {
 					while (i < n1 && j < n2 && sorting) {
 						check = k;
 							if (L[i] <= R[j]) {
-									list[k] = L[i];	acc++;
+									list4[k] = L[i];	acc4++;
 									i++;
 							} else {
-									list[k] = R[j];	acc++;
+									list4[k] = R[j];	acc4++;
 									j++;
 							}
-							compare++;
+							compare4++;
 							Update4();
 							delay();
 							k++;
 					}
 
 					while (i < n1 && sorting) {
-							list[k] = L[i];	acc++;
+							list4[k] = L[i];	acc4++;
 							i++;
 							k++;
 							Update4();
@@ -1404,7 +1849,7 @@ class GraphCanvas3 extends JPanel {
 					}
 
 					while (j < n2 && sorting) {
-							list[k] = R[j];	acc++;
+							list4[k] = R[j];	acc4++;
 							j++;
 							k++;
 							Update4();
@@ -1425,21 +1870,572 @@ class GraphCanvas3 extends JPanel {
 			}
 			//this is where the sorting happens
 		public void swap4(int i1, int i2) {
-			int temp = list[i1];	acc++;
-			list[i1] = list[i2];	acc+=2;
-			list[i2] = temp;	acc++;
+			int temp4 = list4[i1];	acc4++;
+			list4[i1] = list4[i2];	acc4+=2;
+			list4[i2] = temp4;	acc4++;
 		}
 
 
 		public boolean checkSorted4() {
 			for(int i = 0; i < len-1; i++) {
-				if(list[i] > list[i+1]) {	acc+=2;
+				if(list4[i] > list4[i+1]) {	acc4+=2;
 					return false;
 				}
 			}
 			return true;
 		}
+		public void countSort4(int n, int exp) {
+			int output[] = new int[n];	//OUTPUT SORTED LIST
+			int i;
+			int count[] = new int[10];  //THE INDEX ARRAY
+			Arrays.fill(count, 0);
+
+			for(i = 0; i < n; i++)	{
+				count[(list4[i]/exp)%10]++;	acc4++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+			}
+
+			for(i = 1; i < 10; i++) {
+				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+			}
+
+			for(i = n -1; i >= 0; i--) {
+				output[count[(list4[i] / exp) % 10] - 1] = list4[i];	acc4++;  //BUILDING THE OUTPUT ARRAY
+				count[(list4[i] / exp) % 10]--;	acc4++;
+			}
+			for(i = 0; i < n; i++) {
+				if(!sorting)
+					break;
+				check = i;
+				list4[i] = output[i];	acc4++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+				Update4();
+				delay();
+			}
+		}
+
+		public void radixSort4(int n) {
+			int m = getMax(n);
+			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
+			 	if(!sorting)
+			 		break;
+				//countSort(n,exp);
+				int output[] = new int[n];	//OUTPUT SORTED LIST
+				int i;
+				int count[] = new int[10];  //THE INDEX ARRAY
+				Arrays.fill(count, 0);
+
+				for(i = 0; i < n; i++)	{
+					count[(list4[i]/exp)%10]++;	acc4++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				}
+
+				for(i = 1; i < 10; i++) {
+					count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+				}
+
+				for(i = n -1; i >= 0; i--) {
+					output[count[(list4[i] / exp) % 10] - 1] = list4[i];	acc4++;  //BUILDING THE OUTPUT ARRAY
+					count[(list4[i] / exp) % 10]--;	acc4++;
+				}
+				for(i = 0; i < n; i++) {
+					if(!sorting)
+						break;
+					check = i;
+					list4[i] = output[i];	acc4++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+					Update4();
+					delay();
+				}
+				Update4();
+				delay();
+			 }
+		}
+	}
+
+	class SortingAlgorithms5 {
+
+		//insertion sort algorithm
+		public void insertionSort5(int start, int end) {
+			//long startTime = Instant.now().toEpochMilli();
+			for(int i = start+1; i <= end; i++) {
+				current = i; //decides what element should be key
+				int j = i;
+				while(list5[j] < list5[j-1] && sorting) {
+					swap5(j,j-1); //this is where the sorting takes place
+					check = j;
+					compare5++;	acc5+=2; //this is how we set the comparison and array access numbers
+
+					Update5();
+					delay();
+					if(j > start+1)
+						j--;
+				}
+			}
+		}
+		public void heapSort5(int start, int end) {
+			heapify5(len);
+			end = len-1;
+			while(end > 0 && sorting) {
+				current = end;
+				swap5(end,0);
+				end--;
+				siftDown5(0,end);
+				Update5();
+				delay();
+			}
+		}
+		//heapify
+		public void heapify5(int n) {
+			int start = iParent(n-1);
+			while(start >= 0 && sorting) {
+				siftDown5(start, n-1);
+				start--;
+				Update5();
+				delay();
+			}
+		}
+		//siftdown
+		public void siftDown5(int start, int end) {
+			int root = start;
+			while(iLeftChild(root) <= end && sorting) {
+				int child = iLeftChild(root);
+				int swap = root;
+				check = root;
+				if(list5[swap] < list5[child]) {
+					swap = child;
+				} if(child+1 <= end && list5[swap] < list5[child+1]) {
+					swap = child+1;
+				} if(swap == root) {
+					return;
+				} else {
+					swap5(root,swap);
+					check = root;
+					root = swap;
+				}
+				compare5+=3;	acc5+=4;
+				Update5();
+				delay();
+			}
+		}
+		public int iParent(int i) { return ((i-1)/2); } //parent of node in heap
+		public int iLeftChild(int i) { return 2*i + 1; } //left child of a node
+
+		//quicksort
+		public void quickSort5(int lo, int hi) {
+			if(!sorting)
+				return;
+			current = hi;
+			if(lo < hi) {
+				int p = partition5(lo,hi);
+				quickSort5(lo,p-1);
+				quickSort5(p+1, hi);
+			}
+		}
+
+		//partition
+		public int partition5(int lo, int hi) {
+			int pivot = list5[hi];	acc5++;
+			int i = lo - 1;
+			for(int j = lo; j < hi; j++) {
+				check = j;
+				if(!sorting)
+					break;
+				if(list5[j] < pivot) {
+					i++;
+					swap5(i,j);
+				}
+				compare5++;	acc5++;
+				Update5();
+				delay();
+			}
+			swap5(i+1,hi);
+			Update5();
+			delay();
+			return i+1;
+		}
 
 
+		void merge5(int l, int m, int r)
+			{
+					int n1 = m - l + 1;
+					int n2 = r - m;
+					//the 2 subarrays
+					int L[] = new int [n1];
+					int R[] = new int [n2];
+
+					for (int i=0; i<n1; i++) {
+							L[i] = list5[l + i];	acc5++;
+					}
+					for (int j=0; j<n2; j++) {
+							R[j] = list5[m + 1+ j];	acc5++;
+					}
+					int i = 0, j = 0;
+
+					int k = l;
+					//merges the two subarrays into a big array
+					while (i < n1 && j < n2 && sorting) {
+						check = k;
+							if (L[i] <= R[j]) {
+									list5[k] = L[i];	acc5++;
+									i++;
+							} else {
+									list5[k] = R[j];	acc5++;
+									j++;
+							}
+							compare5++;
+							Update5();
+							delay();
+							k++;
+					}
+
+					while (i < n1 && sorting) {
+							list5[k] = L[i];	acc5++;
+							i++;
+							k++;
+							Update5();
+							delay();
+					}
+
+					while (j < n2 && sorting) {
+							list5[k] = R[j];	acc5++;
+							j++;
+							k++;
+							Update5();
+							delay();
+					}
+			}
+
+		//merge sort algorithm
+			public void mergeSort5(int l, int r) {
+					if (l < r) {
+							int m = (l+r)/2;
+							current = r;
+							mergeSort5(l, m);
+							mergeSort5(m+1, r);
+
+							merge5(l, m, r);
+					}
+			}
+			//this is where the sorting happens
+		public void swap5(int i1, int i2) {
+			int temp5 = list5[i1];	acc5++;
+			list5[i1] = list5[i2];	acc5+=2;
+			list5[i2] = temp5;	acc5++;
+		}
+
+
+		public boolean checkSorted5() {
+			for(int i = 0; i < len-1; i++) {
+				if(list5[i] > list5[i+1]) {	acc5+=2;
+					return false;
+				}
+			}
+			return true;
+		}
+		public void countSort5(int n, int exp) {
+			int output[] = new int[n];	//OUTPUT SORTED LIST
+			int i;
+			int count[] = new int[10];  //THE INDEX ARRAY
+			Arrays.fill(count, 0);
+
+			for(i = 0; i < n; i++)	{
+				count[(list5[i]/exp)%10]++;	acc5++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+			}
+
+			for(i = 1; i < 10; i++) {
+				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+			}
+
+			for(i = n -1; i >= 0; i--) {
+				output[count[(list5[i] / exp) % 10] - 1] = list5[i];	acc5++;  //BUILDING THE OUTPUT ARRAY
+				count[(list5[i] / exp) % 10]--;	acc5++;
+			}
+			for(i = 0; i < n; i++) {
+				if(!sorting)
+					break;
+				check = i;
+				list5[i] = output[i];	acc5++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+				Update5();
+				delay();
+			}
+		}
+
+		public void radixSort5(int n) {
+			int m = getMax(n);
+			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
+			 	if(!sorting)
+			 		break;
+				//countSort(n,exp);
+				int output[] = new int[n];	//OUTPUT SORTED LIST
+				int i;
+				int count[] = new int[10];  //THE INDEX ARRAY
+				Arrays.fill(count, 0);
+
+				for(i = 0; i < n; i++)	{
+					count[(list5[i]/exp)%10]++;	acc5++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				}
+
+				for(i = 1; i < 10; i++) {
+					count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+				}
+
+				for(i = n -1; i >= 0; i--) {
+					output[count[(list5[i] / exp) % 10] - 1] = list5[i];	acc5++;  //BUILDING THE OUTPUT ARRAY
+					count[(list5[i] / exp) % 10]--;	acc5++;
+				}
+				for(i = 0; i < n; i++) {
+					if(!sorting)
+						break;
+					check = i;
+					list5[i] = output[i];	acc5++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+					Update5();
+					delay();
+				}
+				Update5();
+				delay();
+			 }
+		}
+	}
+
+	class SortingAlgorithms6 {
+
+		//insertion sort algorithm
+		public void insertionSort6(int start, int end) {
+			//long startTime = Instant.now().toEpochMilli();
+			for(int i = start+1; i <= end; i++) {
+				current = i; //decides what element should be key
+				int j = i;
+				while(list6[j] < list6[j-1] && sorting) {
+					swap6(j,j-1); //this is where the sorting takes place
+					check = j;
+					compare6++;	acc6+=2; //this is how we set the comparison and array access numbers
+
+					Update6();
+					delay();
+					if(j > start+1)
+						j--;
+				}
+			}
+		}
+		public void heapSort6(int start, int end) {
+			heapify6(len);
+			end = len-1;
+			while(end > 0 && sorting) {
+				current = end;
+				swap6(end,0);
+				end--;
+				siftDown6(0,end);
+				Update6();
+				delay();
+			}
+		}
+		//heapify
+		public void heapify6(int n) {
+			int start = iParent(n-1);
+			while(start >= 0 && sorting) {
+				siftDown6(start, n-1);
+				start--;
+				Update6();
+				delay();
+			}
+		}
+		//siftdown
+		public void siftDown6(int start, int end) {
+			int root = start;
+			while(iLeftChild(root) <= end && sorting) {
+				int child = iLeftChild(root);
+				int swap = root;
+				check = root;
+				if(list6[swap] < list6[child]) {
+					swap = child;
+				} if(child+1 <= end && list6[swap] < list6[child+1]) {
+					swap = child+1;
+				} if(swap == root) {
+					return;
+				} else {
+					swap6(root,swap);
+					check = root;
+					root = swap;
+				}
+				compare6+=3;	acc6+=4;
+				Update6();
+				delay();
+			}
+		}
+		public int iParent(int i) { return ((i-1)/2); } //parent of node in heap
+		public int iLeftChild(int i) { return 2*i + 1; } //left child of a node
+
+		//quicksort
+		public void quickSort6(int lo, int hi) {
+			if(!sorting)
+				return;
+			current = hi;
+			if(lo < hi) {
+				int p = partition6(lo,hi);
+				quickSort6(lo,p-1);
+				quickSort6(p+1, hi);
+			}
+		}
+
+		//partition
+		public int partition6(int lo, int hi) {
+			int pivot = list6[hi];	acc6++;
+			int i = lo - 1;
+			for(int j = lo; j < hi; j++) {
+				check = j;
+				if(!sorting)
+					break;
+				if(list6[j] < pivot) {
+					i++;
+					swap6(i,j);
+				}
+				compare6++;	acc6++;
+				Update6();
+				delay();
+			}
+			swap6(i+1,hi);
+			Update6();
+			delay();
+			return i+1;
+		}
+
+
+		void merge6(int l, int m, int r)
+			{
+					int n1 = m - l + 1;
+					int n2 = r - m;
+					//the 2 subarrays
+					int L[] = new int [n1];
+					int R[] = new int [n2];
+
+					for (int i=0; i<n1; i++) {
+							L[i] = list6[l + i];	acc6++;
+					}
+					for (int j=0; j<n2; j++) {
+							R[j] = list6[m + 1+ j];	acc6++;
+					}
+					int i = 0, j = 0;
+
+					int k = l;
+					//merges the two subarrays into a big array
+					while (i < n1 && j < n2 && sorting) {
+						check = k;
+							if (L[i] <= R[j]) {
+									list6[k] = L[i];	acc6++;
+									i++;
+							} else {
+									list6[k] = R[j];	acc6++;
+									j++;
+							}
+							compare6++;
+							Update6();
+							delay();
+							k++;
+					}
+
+					while (i < n1 && sorting) {
+							list6[k] = L[i];	acc6++;
+							i++;
+							k++;
+							Update6();
+							delay();
+					}
+
+					while (j < n2 && sorting) {
+							list6[k] = R[j];	acc6++;
+							j++;
+							k++;
+							Update6();
+							delay();
+					}
+			}
+
+		//merge sort algorithm
+			public void mergeSort6(int l, int r) {
+					if (l < r) {
+							int m = (l+r)/2;
+							current = r;
+							mergeSort6(l, m);
+							mergeSort6(m+1, r);
+
+							merge6(l, m, r);
+					}
+			}
+			//this is where the sorting happens
+		public void swap6(int i1, int i2) {
+			int temp6 = list6[i1];	acc6++;
+			list6[i1] = list6[i2];	acc6+=2;
+			list6[i2] = temp6;	acc6++;
+		}
+
+
+		public boolean checkSorted6() {
+			for(int i = 0; i < len-1; i++) {
+				if(list6[i] > list6[i+1]) {	acc6+=2;
+					return false;
+				}
+			}
+			return true;
+		}
+		public void countSort6(int n, int exp) {
+			int output[] = new int[n];	//OUTPUT SORTED LIST
+			int i;
+			int count[] = new int[10];  //THE INDEX ARRAY
+			Arrays.fill(count, 0);
+
+			for(i = 0; i < n; i++)	{
+				count[(list6[i]/exp)%10]++;	acc6++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+			}
+
+			for(i = 1; i < 10; i++) {
+				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+			}
+
+			for(i = n -1; i >= 0; i--) {
+				output[count[(list6[i] / exp) % 10] - 1] = list6[i];	acc6++;  //BUILDING THE OUTPUT ARRAY
+				count[(list6[i] / exp) % 10]--;	acc6++;
+			}
+			for(i = 0; i < n; i++) {
+				if(!sorting)
+					break;
+				check = i;
+				list6[i] = output[i];	acc6++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+				Update6();
+				delay();
+			}
+		}
+
+		public void radixSort6(int n) {
+			int m = getMax(n);
+			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
+			 	if(!sorting)
+			 		break;
+				//countSort(n,exp);
+				int output[] = new int[n];	//OUTPUT SORTED LIST
+				int i;
+				int count[] = new int[10];  //THE INDEX ARRAY
+				Arrays.fill(count, 0);
+
+				for(i = 0; i < n; i++)	{
+					count[(list6[i]/exp)%10]++;	acc6++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				}
+
+				for(i = 1; i < 10; i++) {
+					count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
+				}
+
+				for(i = n -1; i >= 0; i--) {
+					output[count[(list6[i] / exp) % 10] - 1] = list6[i];	acc6++;  //BUILDING THE OUTPUT ARRAY
+					count[(list6[i] / exp) % 10]--;	acc6++;
+				}
+				for(i = 0; i < n; i++) {
+					if(!sorting)
+						break;
+					check = i;
+					list6[i] = output[i];	acc6++;  //SET THE SORTED LIST TO THE ORIGINAL LIST
+					Update6();
+					delay();
+				}
+				Update6();
+				delay();
+			 }
+		}
 	}
 }
