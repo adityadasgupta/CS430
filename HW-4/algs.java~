@@ -61,12 +61,3 @@ public void radixSort(int n) {
 		delay();
 	 }
 }
-public int getMax(int n) {
-	int mx = list[0];
-	for(int i = 1; i < n; i++) {
-		if(list[i] > mx)
-			mx = list[i];
-		compare++;	acc++;
-	}
-	return mx;
-}
