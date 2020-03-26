@@ -74,8 +74,8 @@ public class App {
 								    "Merge Sort",
 								    "Heap Sort",
 								    "Quick Sort",
-										"Counting Sort",
-										"Radix Sort",
+									"Counting Sort",
+									"Radix Sort",
 								    "All"};
 	private String[] algInfo = {"Best Case: O (n)\nWorst Case: O (n^2)\nAverage: O (n^2)",
 								"Best Case: O (nlogn)\nWorst Case: O (nlogn)\nAverage: O (nlogn)",
@@ -85,7 +85,7 @@ public class App {
 									"Merge Sort",
 									"Heap Sort",
 									"Quick Sort",
-									"Count Sort",
+									"Counting Sort",
 									"Radix Sort",
 									"Insertion Sort"
 								  };
@@ -93,7 +93,7 @@ public class App {
 									 "Merge Sort",
 									 "Heap Sort",
 									 "Quick Sort",
-									 "Count Sort,",
+									 "Counting Sort",
 									 "Radix Sort",
 									 "Merge Sort"
 									};
@@ -101,7 +101,7 @@ public class App {
 			                        "Merge Sort",
 			                        "Heap Sort",
 			                        "Quick Sort",
-			                        "Count Sort,",
+			                        "Counting Sort",
 									"Radix Sort",
 			                        "Heap Sort"
 			                       };
@@ -109,7 +109,7 @@ public class App {
                                      "Merge Sort",
                                      "Heap Sort",
                                      "Quick Sort",
-                                     "Count Sort,",
+                                     "Counting Sort",
 									 "Radix Sort",
                                      "Quick Sort"
                                      };
@@ -118,16 +118,16 @@ public class App {
                                      "Merge Sort",
                                      "Heap Sort",
                                      "Quick Sort",
-                                     "Count Sort,",
+                                     "Counting Sort",
 									 "Radix Sort",
-                                     "Count Sort"
+                                     "Counting Sort"
                                      };
 
 	private String[] algNameRadix = {"Insertion Sort",
                                      "Merge Sort",
                                      "Heap Sort",
                                      "Quick Sort",
-                                     "Count Sort,",
+                                     "Counting Sort",
 									 "Radix Sort",
                                      "Radix Sort"
                                      };
@@ -273,7 +273,7 @@ public class App {
 		tools.add(algIns);
 
 		//SET UP GRAPH 2 NAME
-	    algMerge.setBounds(720,10,230,30);
+	    algMerge.setBounds(460,10,230,30);
 	    algMerge.setBackground(Color.decode("#ffffff"));
 	    algMerge.setBorder(loweredetched);
 	    algMerge.setForeground(Color.decode("#da4703"));
@@ -282,7 +282,7 @@ public class App {
 		tools.add(algMerge);
 
 		//SET UP GRAPH 3 NAME
-		algHeap.setBounds(30,40,230,30);
+		algHeap.setBounds(900,10,230,30);
 	    algHeap.setBackground(Color.decode("#ffffff"));
 	    algHeap.setBorder(loweredetched);
 	    algHeap.setForeground(Color.decode("#fcba03"));
@@ -291,7 +291,7 @@ public class App {
 		tools.add(algHeap);
 
 		//SET UP GRAPH 4 NAME
-		algQuick.setBounds(720,40,230,30);
+		algQuick.setBounds(30,40,230,30);
 	  algQuick.setBackground(Color.decode("#ffffff"));
 		algQuick.setBorder(loweredetched);
 		algQuick.setForeground(Color.decode("#ce03fc"));
@@ -300,19 +300,19 @@ public class App {
 		tools.add(algQuick);
 
    //SET UP GRAPH 5 NAME
-		algCount.setBounds(720,40,230,30);
+		algCount.setBounds(460,40,230,30);
 	    algCount.setBackground(Color.decode("#ffffff"));
 		algCount.setBorder(loweredetched);
-		algCount.setForeground(Color.decode("#ce03fc"));
+		algCount.setForeground(Color.decode("#5c97f7"));
 		algCount.setFont(f);
 		algCount.setEditable(false);
 		tools.add(algCount);
 
     //SET UP GRAPH 6 NAME
-		algRadix.setBounds(720,40,230,30);
+		algRadix.setBounds(900,40,230,30);
 		algRadix.setBackground(Color.decode("#ffffff"));
 		algRadix.setBorder(loweredetched);
-		algRadix.setForeground(Color.decode("#ce03fc"));
+		algRadix.setForeground(Color.decode("#90f75c"));
 		algRadix.setFont(f);
 		algRadix.setEditable(false);
 		tools.add(algRadix);
@@ -378,72 +378,86 @@ public class App {
 		//SET UP COMPARISONS LABEL FOR 1ST GRAPH
     compareL.setHorizontalAlignment(JLabel.LEFT);
     compareL.setBackground(Color.decode("#beebea"));
-		compareL.setBounds(720,90,500,25);
+		compareL.setBounds(720,100,500,25);
 		compareL.setFont(f);
 		tools.add(compareL);
 
 		//SET UP COMPARISONS LABEL FOR 2ND GRAPH
 		compareL2.setHorizontalAlignment(JLabel.LEFT);
 	  compareL2.setBackground(Color.decode("#beebea"));
-		compareL2.setBounds(1020,90,500,25);
+		compareL2.setBounds(1020,100,500,25);
 		compareL2.setFont(f);
 		tools.add(compareL2);
 
 		//SET UP COMPARISONS LABEL FOR 3RD GRAPH
 		compareL3.setHorizontalAlignment(JLabel.LEFT);
 	  compareL3.setBackground(Color.decode("#beebea"));
-		compareL3.setBounds(720,155,500,25);
+		compareL3.setBounds(720,165,500,25);
 		compareL3.setFont(f);
 		tools.add(compareL3);
 
 		//SET UP COMPARISONS LABEL FOR 4TH GRAPH
 		compareL4.setHorizontalAlignment(JLabel.LEFT);
 		compareL4.setBackground(Color.decode("#beebea"));
-		compareL4.setBounds(1020,155,500,25);
+		compareL4.setBounds(1020,165,500,25);
 		compareL4.setFont(f);
 		tools.add(compareL4);
 
 		//SET UP COMPARISONS LABEL FOR 5TH GRAPH
 		compareL5.setHorizontalAlignment(JLabel.LEFT);
 		compareL5.setBackground(Color.decode("#beebea"));
-		compareL5.setBounds(1020,155,500,25);
+		compareL5.setBounds(720,225,500,25);
 		compareL5.setFont(f);
 		tools.add(compareL5);
 
 		//SET UP COMPARISONS LABEL FOR 6TH GRAPH
 		compareL6.setHorizontalAlignment(JLabel.LEFT);
 		compareL6.setBackground(Color.decode("#beebea"));
-		compareL6.setBounds(1020,155,500,25);
+		compareL6.setBounds(1020,225,500,25);
 		compareL6.setFont(f);
 		tools.add(compareL6);
 
 		//SET UP ARRAY ACCESS LABEL FOR 1ST GRAPH
     accessL.setHorizontalAlignment(JLabel.LEFT);
     accessL.setBackground(Color.decode("#beebea"));
-		accessL.setBounds(720,120,500,25);
+		accessL.setBounds(720,130,500,25);
 		accessL.setFont(f);
 		tools.add(accessL);
 
 		//SET UP ARRAY ACCESS LABEL FOR 2ND GRAPH
     accessL2.setHorizontalAlignment(JLabel.LEFT);
     accessL2.setBackground(Color.decode("#beebea"));
-		accessL2.setBounds(1020,120,500,25);
+		accessL2.setBounds(1020,130,500,25);
 		accessL2.setFont(f);
 		tools.add(accessL2);
 
 		//SET UP ARRAY ACCESS LABEL FOR 3RD GRAPH
     accessL3.setHorizontalAlignment(JLabel.LEFT);
     accessL3.setBackground(Color.decode("#beebea"));
-		accessL3.setBounds(720,180,500,25);
+		accessL3.setBounds(720,190,500,25);
 		accessL3.setFont(f);
 		tools.add(accessL3);
 
 		//SET UP ARRAY ACCESS LABEL FOR 4TH GRAPH
     accessL4.setHorizontalAlignment(JLabel.LEFT);
     accessL4.setBackground(Color.decode("#beebea"));
-		accessL4.setBounds(1020,180,500,25);
+		accessL4.setBounds(1020,190,500,25);
 		accessL4.setFont(f);
 		tools.add(accessL4);
+
+		//SET UP ARRAY ACCESS LABEL FOR 4TH GRAPH
+	    accessL5.setHorizontalAlignment(JLabel.LEFT);
+	    accessL5.setBackground(Color.decode("#beebea"));
+			accessL5.setBounds(720,250,500,25);
+			accessL5.setFont(f);
+			tools.add(accessL5);
+
+			//SET UP ARRAY ACCESS LABEL FOR 4TH GRAPH
+		    accessL6.setHorizontalAlignment(JLabel.LEFT);
+		    accessL6.setBackground(Color.decode("#beebea"));
+				accessL6.setBounds(1020,250,500,25);
+				accessL6.setFont(f);
+				tools.add(accessL6);
 
 /*		//SET UP INFO AREA
         information.setBounds(720,170,230,90);
@@ -463,7 +477,7 @@ public class App {
 
 		//SET UP CANVAS FOR SECOND GRAPH
 		canvas2 = new GraphCanvas2();
-		canvas2.setBounds(650,10,SIZE+100,SIZE);
+		canvas2.setBounds(470,10,SIZE+100,SIZE);
 		canvas2.setBorder(BorderFactory.createLineBorder(Color.black));
 		jf.getContentPane().add(tools);
 		jf.getContentPane().add(canvas2);
@@ -471,28 +485,28 @@ public class App {
 
 		//SET UP CANVAS FOR THIRD GRAPH
 		canvas3 = new GraphCanvas3();
-		canvas3.setBounds(30,350,SIZE+100,SIZE);
+		canvas3.setBounds(910,10,SIZE+100,SIZE);
 		canvas3.setBorder(BorderFactory.createLineBorder(Color.black));
 		jf.getContentPane().add(tools);
 		jf.getContentPane().add(canvas3);
 
 		//SET UP CANVAS FOR FOURTH GRAPH
 		canvas4 = new GraphCanvas4();
-		canvas4.setBounds(650,350,SIZE+100,SIZE);
+		canvas4.setBounds(30,SIZE+20,SIZE+100,SIZE);
 		canvas4.setBorder(BorderFactory.createLineBorder(Color.black));
 		jf.getContentPane().add(tools);
 		jf.getContentPane().add(canvas4);
 
 		//SET UP CANVAS FOR FIFTH GRAPH
 		canvas5 = new GraphCanvas5();
-		canvas5.setBounds(650,350,SIZE+100,SIZE);
+		canvas5.setBounds(470,SIZE+20,SIZE+100,SIZE);
 		canvas5.setBorder(BorderFactory.createLineBorder(Color.black));
 		jf.getContentPane().add(tools);
 		jf.getContentPane().add(canvas5);
 
 		//SET UP CANVAS FOR FOURTH GRAPH
 		canvas6 = new GraphCanvas6();
-		canvas6.setBounds(650,350,SIZE+100,SIZE);
+		canvas6.setBounds(910,SIZE+20,SIZE+100,SIZE);
 		canvas6.setBorder(BorderFactory.createLineBorder(Color.black));
 		jf.getContentPane().add(tools);
 		jf.getContentPane().add(canvas6);
@@ -666,12 +680,12 @@ public class App {
 						algorithm6.countSort6(0,len-1);
 						break;
 					case 5:
-						algorithm1.radixSort(0,len-1);
-						algorithm2.radixSort2(0,len-1);
-						algorithm3.radixSort3(0,len-1);
-						algorithm4.radixSort4(0,len-1);
-						algorithm5.radixSort5(0,len-1);
-						algorithm6.radixSort6(0,len-1);
+						algorithm1.radixSort(len-1);
+						algorithm2.radixSort2(len-1);
+						algorithm3.radixSort3(len-1);
+						algorithm4.radixSort4(len-1);
+						algorithm5.radixSort5(len-1);
+						algorithm6.radixSort6(len-1);
 						break;
 					case 6:
 						algorithm1.insertionSort(0,len-1);
@@ -679,7 +693,7 @@ public class App {
 						algorithm3.heapSort3(0,len-1);
 						algorithm4.quickSort4(0,len-1);
 						algorithm5.countSort5(0,len-1);
-						algorithm6.radixSort6(0,len-1);
+						algorithm6.radixSort6(len-1);
 						break;
 
 
@@ -925,7 +939,7 @@ class GraphCanvas3 extends JPanel {
 			for (int i = 0; i < len; i++) { // RUNS TROUGH EACH ELEMENT OF THE LIST
 				int HEIGHT = (list5[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
-				g.setColor(Color.decode("#ce03fc")); // DEFAULT COLOR
+				g.setColor(Color.decode("#5c97f7")); // DEFAULT COLOR
 				if (current > -1 && i == current) {
 					g.setColor(Color.green); // COLOR OF CURRENT
 				}
@@ -953,7 +967,7 @@ class GraphCanvas3 extends JPanel {
 			for (int i = 0; i < len; i++) { // RUNS TROUGH EACH ELEMENT OF THE LIST
 				int HEIGHT = (list6[i] * width)-40; // SETS THE HEIGHT OF THE ELEMENT ON THE GRAPH
 
-				g.setColor(Color.decode("#ce03fc")); // DEFAULT COLOR
+				g.setColor(Color.decode("#90f75c")); // DEFAULT COLOR
 				if (current > -1 && i == current) {
 					g.setColor(Color.green); // COLOR OF CURRENT
 				}
@@ -1176,7 +1190,15 @@ class GraphCanvas3 extends JPanel {
 				delay();
 			}
 		}
-
+		public int getMax(int n) {
+			int mx = list[0];
+			for(int i = 1; i < n; i++) {
+				if(list[i] > mx)
+					mx = list[i];
+				compare++;	acc++;
+			}
+			return mx;
+		}
 		public void radixSort(int n) {
 			int m = getMax(n);
 			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
@@ -1422,9 +1444,17 @@ class GraphCanvas3 extends JPanel {
 				delay();
 			}
 		}
-
+		public int getMax2(int n) {
+			int mx = list2[0];
+			for(int i = 1; i < n; i++) {
+				if(list2[i] > mx)
+					mx = list2[i];
+				compare2++;	acc2++;
+			}
+			return mx;
+		}
 		public void radixSort2(int n) {
-			int m = getMax(n);
+			int m = getMax2(n);
 			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
 			 	if(!sorting)
 			 		break;
@@ -1667,9 +1697,17 @@ class GraphCanvas3 extends JPanel {
 				delay();
 			}
 		}
-
+		public int getMax3(int n) {
+			int mx = list3[0];
+			for(int i = 1; i < n; i++) {
+				if(list3[i] > mx)
+					mx = list3[i];
+				compare3++;	acc3++;
+			}
+			return mx;
+		}
 		public void radixSort3(int n) {
-			int m = getMax(n);
+			int m = getMax3(n);
 			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
 			 	if(!sorting)
 			 		break;
@@ -1911,9 +1949,17 @@ class GraphCanvas3 extends JPanel {
 				delay();
 			}
 		}
-
+		public int getMax4(int n) {
+			int mx = list4[0];
+			for(int i = 1; i < n; i++) {
+				if(list4[i] > mx)
+					mx = list4[i];
+				compare4++;	acc4++;
+			}
+			return mx;
+		}
 		public void radixSort4(int n) {
-			int m = getMax(n);
+			int m = getMax4(n);
 			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
 			 	if(!sorting)
 			 		break;
@@ -2156,9 +2202,17 @@ class GraphCanvas3 extends JPanel {
 				delay();
 			}
 		}
-
+		public int getMax5(int n) {
+			int mx = list5[0];
+			for(int i = 1; i < n; i++) {
+				if(list5[i] > mx)
+					mx = list5[i];
+				compare5++;	acc5++;
+			}
+			return mx;
+		}
 		public void radixSort5(int n) {
-			int m = getMax(n);
+			int m = getMax5(n);
 			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
 			 	if(!sorting)
 			 		break;
@@ -2401,9 +2455,17 @@ class GraphCanvas3 extends JPanel {
 				delay();
 			}
 		}
-
+		public int getMax6(int n) {
+			int mx = list6[0];
+			for(int i = 1; i < n; i++) {
+				if(list6[i] > mx)
+					mx = list6[i];
+				compare6++;	acc6++;
+			}
+			return mx;
+		}
 		public void radixSort6(int n) {
-			int m = getMax(n);
+			int m = getMax6(n);
 			 for(int exp = 1; m/exp > 0; exp *= 10) {	//USES EACH DIGIT TO RUN COUNTSORT ON UNTIL WE RUN OUT OF DIGITS
 			 	if(!sorting)
 			 		break;
