@@ -672,12 +672,12 @@ public class App {
 						algorithm6.quickSort6(0,len-1);
 						break;
 					case 4:
-						algorithm1.countSort(len-1);
-						algorithm2.countSort2(len-1);
-						algorithm3.countSort3(len-1);
-						algorithm4.countSort4(len-1);
-						algorithm5.countSort5(len-1);
-						algorithm6.countSort6(len-1);
+						algorithm1.countSort(0,len-1);
+						algorithm2.countSort2(0,len-1);
+						algorithm3.countSort3(0,len-1);
+						algorithm4.countSort4(0,len-1);
+						algorithm5.countSort5(0,len-1);
+						algorithm6.countSort6(0,len-1);
 						break;
 					case 5:
 						algorithm1.radixSort(len-1);
@@ -692,7 +692,7 @@ public class App {
 						algorithm2.mergeSort2(0,len-1);
 						algorithm3.heapSort3(0,len-1);
 						algorithm4.quickSort4(0,len-1);
-						algorithm5.countSort5(len-1);
+						algorithm5.countSort5(0,len-1);
 						algorithm6.radixSort6(len-1);
 						break;
 
@@ -1163,25 +1163,23 @@ class GraphCanvas3 extends JPanel {
 			}
 			return true;
 		}
-		public void countSort(int n) {
+		public void countSort(int n, int exp) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
-			
 			int count[] = new int[10];  //THE INDEX ARRAY
-			Arrays.fill(count, 0);  //INSTANTIATING ALL THE ELEMENTS OF THE INDEX ARRAY TO 0
-			
+			Arrays.fill(count, 0);
+
 			for(i = 0; i < n; i++)	{
-				count[list[i]]++;	acc++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
-				System.out.println("made it here");
+				count[(list[i]/exp)%10]++;	acc++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
-            
+
 			for(i = 1; i < 10; i++) {
 				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
 			}
 
 			for(i = n -1; i >= 0; i--) {
-				output[count[list[i]] - 1] = list[i];	acc++;  //BUILDING THE OUTPUT ARRAY
-				count[list[i]]--;	acc++;
+				output[count[(list[i] / exp) % 10] - 1] = list[i];	acc++;  //BUILDING THE OUTPUT ARRAY
+				count[(list[i] / exp) % 10]--;	acc++;
 			}
 			for(i = 0; i < n; i++) {
 				if(!sorting)
@@ -1213,7 +1211,6 @@ class GraphCanvas3 extends JPanel {
 				Arrays.fill(count, 0);
 
 				for(i = 0; i < n; i++)	{
-				
 					count[(list[i]/exp)%10]++;	acc++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 				}
 
@@ -1420,14 +1417,14 @@ class GraphCanvas3 extends JPanel {
 			}
 			return true;
 		}
-		public void countSort2(int n) {
+		public void countSort2(int n, int exp) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
 			int count[] = new int[10];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
-				count[list2[i]]++;	acc2++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				count[(list2[i]/exp)%10]++;	acc2++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
 			for(i = 1; i < 10; i++) {
@@ -1435,8 +1432,8 @@ class GraphCanvas3 extends JPanel {
 			}
 
 			for(i = n -1; i >= 0; i--) {
-				output[count[list2[i]] - 1] = list2[i];	acc2++;  //BUILDING THE OUTPUT ARRAY
-				count[list2[i]]--;	acc2++;
+				output[count[(list2[i] / exp) % 10] - 1] = list2[i];	acc2++;  //BUILDING THE OUTPUT ARRAY
+				count[(list2[i] / exp) % 10]--;	acc2++;
 			}
 			for(i = 0; i < n; i++) {
 				if(!sorting)
@@ -1673,14 +1670,14 @@ class GraphCanvas3 extends JPanel {
 			}
 			return true;
 		}
-		public void countSort3(int n) {
+		public void countSort3(int n, int exp) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
 			int count[] = new int[10];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
-				count[list3[i]]++;	acc3++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				count[(list3[i]/exp)%10]++;	acc3++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
 			for(i = 1; i < 10; i++) {
@@ -1688,8 +1685,8 @@ class GraphCanvas3 extends JPanel {
 			}
 
 			for(i = n -1; i >= 0; i--) {
-				output[count[list3[i]] - 1] = list3[i];	acc3++;  //BUILDING THE OUTPUT ARRAY
-				count[list3[i]]--;	acc3++;
+				output[count[(list3[i] / exp) % 10] - 1] = list3[i];	acc3++;  //BUILDING THE OUTPUT ARRAY
+				count[(list3[i] / exp) % 10]--;	acc3++;
 			}
 			for(i = 0; i < n; i++) {
 				if(!sorting)
@@ -1925,14 +1922,14 @@ class GraphCanvas3 extends JPanel {
 			}
 			return true;
 		}
-		public void countSort4(int n) {
+		public void countSort4(int n, int exp) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
 			int count[] = new int[10];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
-				count[list4[i]]++;	acc4++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				count[(list4[i]/exp)%10]++;	acc4++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
 			for(i = 1; i < 10; i++) {
@@ -1940,8 +1937,8 @@ class GraphCanvas3 extends JPanel {
 			}
 
 			for(i = n -1; i >= 0; i--) {
-				output[count[list4[i]] - 1] = list4[i];	acc4++;  //BUILDING THE OUTPUT ARRAY
-				count[list4[i]]--;	acc4++;
+				output[count[(list4[i] / exp) % 10] - 1] = list4[i];	acc4++;  //BUILDING THE OUTPUT ARRAY
+				count[(list4[i] / exp) % 10]--;	acc4++;
 			}
 			for(i = 0; i < n; i++) {
 				if(!sorting)
@@ -2178,14 +2175,14 @@ class GraphCanvas3 extends JPanel {
 			}
 			return true;
 		}
-		public void countSort5(int n) {
+		public void countSort5(int n, int exp) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
 			int count[] = new int[10];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
-				count[list5[i]]++;	acc5++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				count[(list5[i]/exp)%10]++;	acc5++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
 			for(i = 1; i < 10; i++) {
@@ -2193,8 +2190,8 @@ class GraphCanvas3 extends JPanel {
 			}
 
 			for(i = n -1; i >= 0; i--) {
-				output[count[list5[i]] - 1] = list5[i];	acc5++;  //BUILDING THE OUTPUT ARRAY
-				count[list5[i]]--;	acc5++;
+				output[count[(list5[i] / exp) % 10] - 1] = list5[i];	acc5++;  //BUILDING THE OUTPUT ARRAY
+				count[(list5[i] / exp) % 10]--;	acc5++;
 			}
 			for(i = 0; i < n; i++) {
 				if(!sorting)
@@ -2431,14 +2428,14 @@ class GraphCanvas3 extends JPanel {
 			}
 			return true;
 		}
-		public void countSort6(int n) {
+		public void countSort6(int n, int exp) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
 			int count[] = new int[10];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
-				count[list6[i]]++;	acc6++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
+				count[(list6[i]/exp)%10]++;	acc6++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
 			for(i = 1; i < 10; i++) {
@@ -2446,8 +2443,8 @@ class GraphCanvas3 extends JPanel {
 			}
 
 			for(i = n -1; i >= 0; i--) {
-				output[count[list6[i]] - 1] = list6[i];	acc6++;  //BUILDING THE OUTPUT ARRAY
-				count[list6[i]]--;	acc6++;
+				output[count[(list6[i] / exp) % 10] - 1] = list6[i];	acc6++;  //BUILDING THE OUTPUT ARRAY
+				count[(list6[i] / exp) % 10]--;	acc6++;
 			}
 			for(i = 0; i < n; i++) {
 				if(!sorting)
