@@ -672,12 +672,12 @@ public class App {
 						algorithm6.quickSort6(0,len-1);
 						break;
 					case 4:
-						algorithm1.countSort(len-1);
-						algorithm2.countSort2(len-1);
-						algorithm3.countSort3(len-1);
-						algorithm4.countSort4(len-1);
-						algorithm5.countSort5(len-1);
-						algorithm6.countSort6(len-1);
+						algorithm1.countSort(len);
+						algorithm2.countSort2(len);
+						algorithm3.countSort3(len);
+						algorithm4.countSort4(len);
+						algorithm5.countSort5(len);
+						algorithm6.countSort6(len);
 						break;
 					case 5:
 						algorithm1.radixSort(len-1);
@@ -1167,15 +1167,15 @@ class GraphCanvas3 extends JPanel {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
 			
-			int count[] = new int[10];  //THE INDEX ARRAY
+			int count[] = new int[101];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);  //INSTANTIATING ALL THE ELEMENTS OF THE INDEX ARRAY TO 0
 			
 			for(i = 0; i < n; i++)	{
 				count[list[i]]++;	acc++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
-				System.out.println("made it here");
+				System.out.println(n);
 			}
             
-			for(i = 1; i < 10; i++) {
+			for(i = 1; i < 100; i++) {
 				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
 			}
 
@@ -1423,14 +1423,14 @@ class GraphCanvas3 extends JPanel {
 		public void countSort2(int n) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
-			int count[] = new int[10];  //THE INDEX ARRAY
+			int count[] = new int[101];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
 				count[list2[i]]++;	acc2++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
-			for(i = 1; i < 10; i++) {
+			for(i = 1; i < 100; i++) {
 				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
 			}
 
@@ -1676,14 +1676,14 @@ class GraphCanvas3 extends JPanel {
 		public void countSort3(int n) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
-			int count[] = new int[10];  //THE INDEX ARRAY
+			int count[] = new int[101];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
 				count[list3[i]]++;	acc3++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
-			for(i = 1; i < 10; i++) {
+			for(i = 1; i < 100; i++) {
 				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
 			}
 
@@ -1928,14 +1928,14 @@ class GraphCanvas3 extends JPanel {
 		public void countSort4(int n) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
-			int count[] = new int[10];  //THE INDEX ARRAY
+			int count[] = new int[101];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
 				count[list4[i]]++;	acc4++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
-			for(i = 1; i < 10; i++) {
+			for(i = 1; i < 100; i++) {
 				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
 			}
 
@@ -2181,14 +2181,14 @@ class GraphCanvas3 extends JPanel {
 		public void countSort5(int n) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
-			int count[] = new int[10];  //THE INDEX ARRAY
+			int count[] = new int[101];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
 				count[list5[i]]++;	acc5++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
-			for(i = 1; i < 10; i++) {
+			for(i = 1; i < 100; i++) {
 				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
 			}
 
@@ -2434,14 +2434,14 @@ class GraphCanvas3 extends JPanel {
 		public void countSort6(int n) {
 			int output[] = new int[n];	//OUTPUT SORTED LIST
 			int i;
-			int count[] = new int[10];  //THE INDEX ARRAY
+			int count[] = new int[101];  //THE INDEX ARRAY
 			Arrays.fill(count, 0);
 
 			for(i = 0; i < n; i++)	{
 				count[list6[i]]++;	acc6++;  //STORE THE COUNT OF EACH ELEMENT IN LIST
 			}
 
-			for(i = 1; i < 10; i++) {
+			for(i = 1; i < 100; i++) {
 				count[i] += count[i - 1];  //count[i] NOW STORES ACTUAL POSITIONS OF ELEMENTS IN OUTPUT ARRAY
 			}
 
